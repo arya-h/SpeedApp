@@ -6,7 +6,7 @@ import { ideaReducer } from '../reducers/ideaReducer';
 
 const reducers = combineReducers({
     auth: authReducer,
-    idea: ideaReducer
+    ideas: ideaReducer
 })
 
 export const store = createStore( 
