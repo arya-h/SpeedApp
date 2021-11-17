@@ -18,6 +18,8 @@ import { types } from "../types/types";
 */
 export const ideaReducer = (state = initialIdeas, action) => {
 
+    console.log("this is action : " + action);
+
     switch (action.type) {
 
         case types.ideasLoad: {
@@ -44,6 +46,7 @@ export const ideaReducer = (state = initialIdeas, action) => {
             }
 
         case types.ideaDelete:
+            console.log("delete called");
             return {
                 ...state,
                 ideas: state.ideas.filter ( idea => idea.id !== action.payload )
