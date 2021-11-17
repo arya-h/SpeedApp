@@ -1,0 +1,21 @@
+.col-1.idea-button{
+    max-width: 15vh;
+    
+}
+
+.popover-row{
+    margin-bottom: 1.5vh;
+}
+
+.loading-delete-spinner{
+    z-index: 10;
+    height: 10vh;
+    width: 10vh;
+    position: fixed;
+    left: 20%;
+    right: 20%;
+    top:20%;
+    bottom: 20%;
+    margin: auto;
+    
+}
