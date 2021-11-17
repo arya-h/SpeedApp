@@ -9,7 +9,7 @@ export const IdeaList = () => {
     return (
         <div >
             { ideas.length === 0 ?
-                <h1>There is no ideas yet</h1> : 
+                <h1>There are no ideas yet</h1> : 
                 ideas.map(i => <IdeaCard idea={i} />)
             }
         </div>
