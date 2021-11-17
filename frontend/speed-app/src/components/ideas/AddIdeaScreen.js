@@ -54,7 +54,6 @@ export const AddIdeaScreen = () => {
             <div className="col-6 text-end">
               <button
                 className="btn btn-primary mt-3"
-                //   onClick={() => dispatch(addNewIdea({ title: "test" }))}
                 onClick={() => {
                   dispatch(addNewIdea({ title: title, content: content }));
                   history.push("/");

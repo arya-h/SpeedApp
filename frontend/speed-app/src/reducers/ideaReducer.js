@@ -30,7 +30,7 @@ export const ideaReducer = (state = initialIdeas, action) => {
         case types.ideasAddNew:
             return {
                 ...state,
-                notes: [...state.ideas, {...action.payload}]
+                ideas: [...state.ideas, {...action.payload}]
             }
 
         case types.ideasUpdate:
