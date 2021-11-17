@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addNewIdea } from "../../actions/idea";
 import NavBar from "../ui/NavBar";
-import { IdeaList } from "./IdeaList";
 
 export const AddIdeaScreen = () => {
   const dispatch = useDispatch();
