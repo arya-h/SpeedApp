@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-//import { addNewIdea } from "../../actions/idea";
+import { updateIdeaAction } from "../../actions/idea";
 import NavBar from "../ui/NavBar";
 
 export const IdeaEditScreen = ({match}) => {
@@ -32,7 +32,7 @@ export const IdeaEditScreen = ({match}) => {
                 placeholder="Title"
                 id="ideaTitle"
                 value={ideaObject?.title}
-                //onChange={(event) => setTitle(event.target.value)}
+                onChange={(event) => ideaObject.title = event.target.value}
               ></input>
             </div>
             <div className="row">
@@ -46,7 +46,7 @@ export const IdeaEditScreen = ({match}) => {
                 placeholder="Description"
                 rows="3"
                 value={ideaObject?.content}
-                //onChange={(event) => setContent(event.target.value)}
+                onChange={(event) => ideaObject.content = event.target.value}
               ></textarea>
             </div>
             <div className="row"></div>
@@ -54,7 +54,7 @@ export const IdeaEditScreen = ({match}) => {
               <button
                 className="btn btn-primary mt-3"
                 onClick={() => {
-                  //dispatch(addNewIdea({ title: title, content: content }));
+                  dispatch(updateIdeaAction(ideaObject));
                   history.push("/");
                 }}
               >
