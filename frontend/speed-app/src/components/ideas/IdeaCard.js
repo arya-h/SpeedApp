@@ -21,7 +21,6 @@ export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
-  //   const [showDeleteToast, setShowDeleteToast] = useState(false); // show toast after delete
 
   //triggered when clicking on Yes button in popover
   const deleteIdea = async (id) => {
@@ -38,25 +37,13 @@ export const IdeaCard = ({ idea }) => {
         //     type: types.ideasDelete,
         //     payload : id,
         // }});
-        console.log("document " + id + " deleted");
+        
       })
-      .catch((err) => {
-        console.log("Error : " + err);
+      .catch((err) => {   
         setShowPopover(false);
         setShowErrorDelete(true);
       });
   };
-
-  //   const toastDelete = (
-  //     <Toast onClose={() => setShowDeleteToast(true)} show={showDeleteToast} delay={3000} autohide>
-  //       <Toast.Header>
-  //         <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-  //         <strong className="me-auto">Bootstrap</strong>
-  //         <small>11 mins ago</small>
-  //       </Toast.Header>
-  //       <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
-  //     </Toast>
-  //   );
 
   //popover to ask user if he's sure about deleting the idea
   const popover = (
