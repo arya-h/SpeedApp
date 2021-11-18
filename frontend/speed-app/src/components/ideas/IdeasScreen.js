@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../ui/NavBar";
 import { IdeaList } from "./IdeaList";
 
 export const IdeasScreen = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="container-fluid px-5">
         {/* TODO: Sidebar */}
         <div className="row">
