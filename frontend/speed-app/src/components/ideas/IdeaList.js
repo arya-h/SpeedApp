@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { IdeaCard } from './IdeaCard'
 
 export const IdeaList = () => {   
 
     const { ideas } = useSelector((state) => state.ideas);
+
+    // Rerender when list changes (Delete idea)
+    useEffect(() => {}, [ideas])
 
     return (
         <div >
