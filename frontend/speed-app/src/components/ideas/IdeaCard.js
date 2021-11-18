@@ -6,6 +6,7 @@ import { useState } from "react";
 //redux
 import { types } from "../../types/types";
 import { ideaReducer } from "../../reducers/ideaReducer";
+import { Link } from "react-router-dom";
 
 //import delete items from firestore
 import { doc, deleteDoc } from "firebase/firestore";
@@ -143,6 +144,14 @@ export const IdeaCard = ({ idea }) => {
                   <img src={delete_logo} height="15"></img>
                 </a>
               </OverlayTrigger>
+            </Col>
+            {/* update button */}
+            <Col xs={1} className="idea-button">
+              <Link to={{
+                pathname: `/edit/${idea.id}`
+              }}>
+                <i class="fas fa-edit"></i>
+              </Link>
             </Col>
           </Row>
         </Container>

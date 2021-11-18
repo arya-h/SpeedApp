@@ -1,5 +1,6 @@
 import { addIdea } from "../helpers/addIdea";
 import { loadIdeas } from "../helpers/loadIdeas";
+import { updateIdea } from "../helpers/updateIdea";
 import { types } from "../types/types";
 
 export const addNewIdea = (idea) => {
@@ -26,4 +27,10 @@ export const startLoadingIdeas = () => {
 export const setIdeas = (ideas) => ({
     type: types.ideasLoad,
     payload: ideas
-})
+});
+
+export const updateIdeaAction = ( idea ) => {
+    return async () => {
+        const result = await updateIdea(idea);
+    }
+}
