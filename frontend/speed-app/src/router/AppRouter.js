@@ -10,6 +10,8 @@ import { useDispatch } from 'react-redux'
 import { IdeasScreen } from "../components/ideas/IdeasScreen";
 import { startLoadingIdeas } from "../actions/idea";
 import { IdeaEditScreen } from "../components/ideas/IdeaEditScreen";
+import { AddIdeaScreen } from "../components/ideas/AddIdeaScreen";
+
 
 export const AppRouter = () => {
 
@@ -37,7 +39,11 @@ export const AppRouter = () => {
                         path="/edit/:ideaId"
                         component={ IdeaEditScreen }
                     />
-
+                    {/* Route to add idea*/}
+                    <Route
+                        path="/add"
+                        component={ AddIdeaScreen }
+                    />
                     {/* Route to main screen */}
                     <Route
                         path="/"

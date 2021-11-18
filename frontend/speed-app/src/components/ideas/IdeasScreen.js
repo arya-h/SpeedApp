@@ -1,17 +1,31 @@
-import React from 'react'
-import NavBar from '../ui/NavBar'
-import { IdeaList } from './IdeaList'
+import React from "react";
+import { Link } from "react-router-dom";
+import NavBar from "../ui/NavBar";
+import { IdeaList } from "./IdeaList";
 
 export const IdeasScreen = () => {
 
-    return (
-        <div>
-            <NavBar />
-            <div className="container-fluid px-5">
-                {/* TODO: Sidebar */}
-                <h1 className="my-3">Ideas</h1>
-                <IdeaList/>
-            </div>
+  return (
+    <div>
+      <NavBar />
+      <div className="container-fluid px-5">
+        {/* TODO: Sidebar */}
+        <div className="row">
+          <div className="col-6">
+            <h1 className="my-3">Ideas</h1>
+          </div>
+          <div className="col-6 text-end">
+            <Link to="/add">
+              <button
+                className="btn btn-primary mt-3"
+              >
+                Add New Idea
+              </button>
+            </Link>
+          </div>
         </div>
-    )
-}
+        <IdeaList />
+      </div>
+    </div>
+  );
+};
