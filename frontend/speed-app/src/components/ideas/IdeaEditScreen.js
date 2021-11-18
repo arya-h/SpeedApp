@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateIdeaAction } from "../../actions/idea";
@@ -8,7 +8,11 @@ export const IdeaEditScreen = ({match}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { ideaId } = match.params;
-  const ideaObject = useSelector(state => state.ideas.ideas.find(idea => idea.id == ideaId));
+  let ideaObject = useSelector(state => state.ideas.ideas.find(idea => idea.id == ideaId));
+  const [title, setTitle] = useState(ideaObject.title)
+  const [content, setContent] = useState(ideaObject.content)
+
+  
   
   return (
     <div>
@@ -31,8 +35,8 @@ export const IdeaEditScreen = ({match}) => {
                 class="form-control"
                 placeholder="Title"
                 id="ideaTitle"
-                value={ideaObject?.title}
-                onChange={(event) => ideaObject.title = event.target.value}
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
               ></input>
             </div>
             <div className="row">
@@ -45,8 +49,8 @@ export const IdeaEditScreen = ({match}) => {
                 id="ideaDescription"
                 placeholder="Description"
                 rows="3"
-                value={ideaObject?.content}
-                onChange={(event) => ideaObject.content = event.target.value}
+                value={content}
+                onChange={(event) => setContent(event.target.value)}
               ></textarea>
             </div>
             <div className="row"></div>
@@ -54,6 +58,8 @@ export const IdeaEditScreen = ({match}) => {
               <button
                 className="btn btn-primary mt-3"
                 onClick={() => {
+                  ideaObject.title = title;
+                  ideaObject.content = content;
                   dispatch(updateIdeaAction(ideaObject));
                   history.push("/");
                 }}
