@@ -45,7 +45,7 @@ export const startDeleting = ( id ) => {
         await deleteDoc( doc(db, "ideas", id) );
 
         dispatch( deleteIdea( id ));
-        alert( 'Idea deleted') 
+        // alert( 'Idea deleted') 
 
     }
 }

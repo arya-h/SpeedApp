@@ -24,8 +24,18 @@ export const IdeaCard = ({ idea }) => {
   const dispatch = useDispatch();
 
   // Handlers
-  const handleDeleteConfirmation = ( id ) => {
-    dispatch( startDeleting( id )); 
+  const handleDeleteConfirmation = async ( id ) => {
+    setLoadingDelete(true);
+    dispatch( 
+      await startDeleting( id )).then(
+        ()=>{
+          setTimeout((o) => setLoadingDelete(!o), 2000);
+        }
+      ).catch(
+        (err)=>{
+          alert("There was an error while deleting your idea: ", err);
+        }
+      ); 
   } 
 
   //triggered when clicking on Yes button in popover
