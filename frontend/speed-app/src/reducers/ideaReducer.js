@@ -18,8 +18,6 @@ import { types } from "../types/types";
 */
 export const ideaReducer = (state = initialIdeas, action) => {
 
-    console.log("this is action : " + action);
-
     switch (action.type) {
 
         case types.ideasLoad: {

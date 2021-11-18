@@ -11,6 +11,7 @@ import { IdeasScreen } from "../components/ideas/IdeasScreen";
 import { startLoadingIdeas } from "../actions/idea";
 import { IdeaEditScreen } from "../components/ideas/IdeaEditScreen";
 import { AddIdeaScreen } from "../components/ideas/AddIdeaScreen";
+import NavBar from "../components/ui/NavBar";
 
 
 export const AppRouter = () => {
@@ -30,6 +31,7 @@ export const AppRouter = () => {
     return (
         <Router>
             <div>
+            <NavBar />
                 <Switch>
 
                     {/* TODO: Route for authentication screen */}
