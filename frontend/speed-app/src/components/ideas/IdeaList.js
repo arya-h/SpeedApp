@@ -13,7 +13,7 @@ export const IdeaList = () => {
         <div >
             { ideas.length === 0 ?
                 <h1>There are no ideas yet</h1> : 
-                ideas.map(i => <IdeaCard idea={i} />)
+                ideas.map(i => <IdeaCard key={i.id} idea={i} />)
             }
         </div>
     )

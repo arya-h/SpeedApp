@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addNewIdea } from "../../actions/idea";
-import NavBar from "../ui/NavBar";
-
 export const AddIdeaScreen = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -12,7 +10,6 @@ export const AddIdeaScreen = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="container-fluid px-5">
         {/* TODO: Sidebar */}
         <div className="row">
@@ -21,14 +18,14 @@ export const AddIdeaScreen = () => {
           </div>
         </div>
         <form>
-          <div class="form-group">
+          <div className="form-group">
             <div className="row mb-4">
-              <label for="ideaTitle">
+              <label htmlFor="ideaTitle">
                 <h2>Title</h2>
               </label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Title"
                 id="ideaTitle"
                 value={title}
@@ -36,12 +33,12 @@ export const AddIdeaScreen = () => {
               ></input>
             </div>
             <div className="row">
-              <label for="ideaDescription">
+              <label htmlFor="ideaDescription">
                 <h2>Description</h2>
               </label>
               <textarea
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="ideaDescription"
                 placeholder="Description"
                 rows="3"

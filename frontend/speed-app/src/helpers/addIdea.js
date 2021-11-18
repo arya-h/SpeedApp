@@ -3,6 +3,6 @@ import { db } from "../firebase/firebase-config"
 
 export const addIdea = async (idea) => {
     const docRef = await addDoc(collection(db, "ideas"), idea);
-    console.log(docRef)
+    idea.id = docRef.id;
     return idea;
 }

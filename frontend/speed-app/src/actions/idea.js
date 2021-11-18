@@ -8,8 +8,8 @@ import { types } from "../types/types";
 
 export const addNewIdea = (idea) => {
     return async (dispatch) => {
-        await addIdea(idea);
-        dispatch(createIdea(idea));
+        const ideaWithId = await addIdea(idea);
+        dispatch(createIdea(ideaWithId));
     }
 }
 

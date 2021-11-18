@@ -4,16 +4,13 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
 //redux
-import { types } from "../../types/types";
-import { ideaReducer } from "../../reducers/ideaReducer";
 import { Link } from "react-router-dom";
 
 //import delete items from firestore
 import { doc, deleteDoc } from "firebase/firestore";
 //firestore
 import { db } from "../../firebase/firebase-config";
-//delete logo
-import delete_logo from "../../assets/delete.png";
+
 //stylesheet
 import "../../style/ideas.css";
 import { startDeleting } from "../../actions/idea";
@@ -109,8 +106,7 @@ export const IdeaCard = ({ idea }) => {
 
   return (
     <div className="card my-3">
-
-      {/* <toastDelete /> Do not know what is this but it has no definition*/}
+      {/* <toastDelete /> */}
       <div className="card-body">
         <h5 className="card-title">{idea.title}</h5>
         <Container fluid>
@@ -119,14 +115,14 @@ export const IdeaCard = ({ idea }) => {
             {/* likes */}
             <Col xs={1} className="idea-button">
               <a href="#" className="card-link" style={removeUnderline}>
-                <i class="fas fa-thumbs-up"></i> 0
+                <i className="fas fa-thumbs-up"></i> 0
               </a>
             </Col>
 
             {/* comments */}
             <Col xs={1} className="idea-button">
               <a href="#" className="card-link" style={removeUnderline}>
-                <i class="far fa-comments"></i> 0
+                <i className="far fa-comments"></i> 0
               </a>
             </Col>
 
@@ -140,8 +136,7 @@ export const IdeaCard = ({ idea }) => {
                 overlay={popover}
               >
                 <a href="#" onClick={() => setShowPopover(true)}>
-                {/* <a href="#" onClick={( e ) => { handleDeleteConfirmation(idea.id, e) }}> */}
-                  <img src={delete_logo} height="15"></img>
+                  <i className="far fa-trash-alt"></i>
                 </a>
 
               </OverlayTrigger>
@@ -151,7 +146,7 @@ export const IdeaCard = ({ idea }) => {
               <Link to={{
                 pathname: `/edit/${idea.id}`
               }}>
-                <i class="fas fa-edit"></i>
+                <i className="fas fa-edit"></i>
               </Link>
             </Col>
           </Row>
