@@ -1,3 +1,6 @@
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase-config";
+
 import { addIdea } from "../helpers/addIdea";
 import { loadIdeas } from "../helpers/loadIdeas";
 import { updateIdea } from "../helpers/updateIdea";
@@ -34,3 +37,20 @@ export const updateIdeaAction = ( idea ) => {
         const result = await updateIdea(idea);
     }
 }
+
+// Delete idea
+export const startDeleting = ( id ) => {
+    return async ( dispatch ) => {
+
+        await deleteDoc( doc(db, "ideas", id) );
+
+        dispatch( deleteIdea( id ));
+        alert( 'Idea deleted') 
+
+    }
+}
+
+export const deleteIdea = ( id ) => ({
+    type: types.ideasDelete,
+    payload: id
+})

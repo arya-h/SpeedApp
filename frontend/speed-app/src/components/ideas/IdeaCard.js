@@ -16,11 +16,20 @@ import { db } from "../../firebase/firebase-config";
 import delete_logo from "../../assets/delete.png";
 //stylesheet
 import "../../style/ideas.css";
+import { startDeleting } from "../../actions/idea";
+import { useDispatch } from "react-redux";
 
 export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
+
+  const dispatch = useDispatch();
+
+  // Handlers
+  const handleDeleteConfirmation = ( id ) => {
+    dispatch( startDeleting( id )); 
+  } 
 
   //triggered when clicking on Yes button in popover
   const deleteIdea = async (id) => {
@@ -73,7 +82,8 @@ export const IdeaCard = ({ idea }) => {
               <Button
                 variant="danger"
                 disabled={loadingDelete}
-                onClick={() => deleteIdea(idea.id)}
+                // onClick={() => deleteIdea(idea.id)}
+                onClick={ ( e ) => { handleDeleteConfirmation(idea.id, e) } }
               >
                 Yes
               </Button>
@@ -96,9 +106,11 @@ export const IdeaCard = ({ idea }) => {
   );
 
   const removeUnderline = { textDecoration: "none" };
+
   return (
     <div className="card my-3">
-      <toastDelete />
+
+      {/* <toastDelete /> Do not know what is this but it has no definition*/}
       <div className="card-body">
         <h5 className="card-title">{idea.title}</h5>
         <Container fluid>
@@ -128,8 +140,10 @@ export const IdeaCard = ({ idea }) => {
                 overlay={popover}
               >
                 <a href="#" onClick={() => setShowPopover(true)}>
+                {/* <a href="#" onClick={( e ) => { handleDeleteConfirmation(idea.id, e) }}> */}
                   <img src={delete_logo} height="15"></img>
                 </a>
+
               </OverlayTrigger>
             </Col>
             {/* update button */}
