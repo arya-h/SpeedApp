@@ -5,4 +5,7 @@ export const types = {
     ideasAddNew: '[Ideas] Add idea',
     ideasUpdate: '[Ideas] Update idea',
     ideasDelete: '[Ideas] Delete idea',
+
+    // Comments
+    addComment: '[Comments] Add Comment'
 }

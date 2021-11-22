@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
+import { AddCommentInput } from "../comments/AddCommentInput";
 //redux
 import { Link } from "react-router-dom";
 
@@ -159,6 +160,9 @@ export const IdeaCard = ({ idea }) => {
                 <i className="fas fa-edit"></i>
               </Link>
             </Col>
+          </Row>
+          <Row>
+              <AddCommentInput ideaObject={idea}></AddCommentInput>
           </Row>
         </Container>
       </div>

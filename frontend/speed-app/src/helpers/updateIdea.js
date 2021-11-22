@@ -6,6 +6,4 @@ export const updateIdea = async (idea) => {
 
     // update idea document
     let response = await updateDoc(ideaRef, idea);
-
-    console.log(response);
 }
