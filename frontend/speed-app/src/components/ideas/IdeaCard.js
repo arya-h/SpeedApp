@@ -22,8 +22,17 @@ export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
+  const [showComments, setShowComments] = useState('none')
 
   const dispatch = useDispatch();
+
+  const onClickComments = () => {
+    if(showComments == 'none'){
+      setShowComments('block');
+    }else{
+      setShowComments('none');
+    }
+  }
 
   // Handlers
   const handleDeleteConfirmation = async ( id ) => {
@@ -137,7 +146,7 @@ export const IdeaCard = ({ idea }) => {
 
             {/* comments */}
             <Col xs={1} className="idea-button">
-              <a href="#" className="card-link" style={removeUnderline}>
+              <a href="#" className="card-link" style={removeUnderline} onClick={onClickComments}>
                 <i className="far fa-comments"></i>{idea.comments.length}
               </a>
             </Col>
@@ -166,10 +175,10 @@ export const IdeaCard = ({ idea }) => {
               </Link>
             </Col>
           </Row>
-          <Row>
+          <Row style={{display: showComments}}>
               <AddCommentInput ideaObject={idea}></AddCommentInput>
           </Row>
-          <Row>
+          <Row style={{display: showComments}}>
               <CommentList ideaObject={idea}></CommentList>
           </Row>
         </Container>
