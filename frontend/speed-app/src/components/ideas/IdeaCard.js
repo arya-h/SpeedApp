@@ -3,6 +3,9 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
+//icons
+import { AiOutlineFieldTime } from "react-icons/ai";
+
 //redux
 import { Link } from "react-router-dom";
 
@@ -18,46 +21,37 @@ import { useDispatch } from "react-redux";
 
 export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
-  const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
+  // const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
 
   const dispatch = useDispatch();
 
   // Handlers
-  const handleDeleteConfirmation = async ( id ) => {
+  const handleDeleteConfirmation = async (id) => {
     setLoadingDelete(true);
-    dispatch( 
-      await startDeleting( id )).then(
-        ()=>{
-          setTimeout((o) => setLoadingDelete(!o), 2000);
-        }
-      ).catch(
-        (err)=>{
-          alert("There was an error while deleting your idea: ", err);
-        }
-      ); 
-  } 
+    dispatch(await startDeleting(id))
+      .then(() => {
+        setTimeout((o) => setLoadingDelete(!o), 2000);
+      })
+      .catch((err) => {
+        alert("There was an error while deleting your idea: ", err);
+      });
+  };
 
   //triggered when clicking on Yes button in popover
   const deleteIdea = async (id) => {
-    
     setLoadingDelete(true);
 
     await deleteDoc(doc(db, "ideas", id))
-    .then(()=>{setTimeout((o) => setLoadingDelete(!o), 3000);})
+      .then(() => {
+        setTimeout((o) => setLoadingDelete(!o), 3000);
+      })
       .then(() => {
         //success
         setShowPopover(false);
-        //redux part not working
-        // ideaReducer({action:{
-        //     type: types.ideasDelete,
-        //     payload : id,
-        // }});
-        
       })
-      .catch((err) => {   
+      .catch((err) => {
         setShowPopover(false);
-        setShowErrorDelete(true);
       });
   };
 
@@ -67,7 +61,7 @@ export const IdeaCard = ({ idea }) => {
       <Popover.Header as="h3">Delete idea</Popover.Header>
       <Popover.Body>
         <Container fluid>
-            {/* show spinner only if loading */}
+          {/* show spinner only if loading */}
           {loadingDelete ? (
             <Spinner
               animation="border"
@@ -90,7 +84,9 @@ export const IdeaCard = ({ idea }) => {
                 variant="danger"
                 disabled={loadingDelete}
                 // onClick={() => deleteIdea(idea.id)}
-                onClick={ ( e ) => { handleDeleteConfirmation(idea.id, e) } }
+                onClick={(e) => {
+                  handleDeleteConfirmation(idea.id, e);
+                }}
               >
                 Yes
               </Button>
@@ -114,11 +110,39 @@ export const IdeaCard = ({ idea }) => {
 
   const removeUnderline = { textDecoration: "none" };
 
+  const unixTimestamp = idea.timestamp;
+
+  // const milliseconds = unixTimestamp * 1000; // 1575909015000
+
+  const dateObject = new Date(unixTimestamp);
+
+  const dateString =
+    dateObject.getDate() +
+    "/" +
+    (dateObject.getMonth() + 1) +
+    "/" +
+    dateObject.getUTCFullYear();
+
+  // 'Europe/Vienna'
+
   return (
     <div className="card my-3">
       {/* <toastDelete /> */}
       <div className="card-body">
-        <h5 className="card-title">{idea.title}</h5>
+        <Row>
+          <Col xs={4}>
+            <h5 className="card-title">{idea.title} </h5>
+          </Col>
+
+          <Col md={{ span: 3, offset: 5 }} >
+           <span className="title-timestamp">
+            <AiOutlineFieldTime />{" "}
+            
+            {dateObject.toLocaleString("en-ES", { timeZone: "Europe/Vienna" })}
+            </span> 
+          </Col>
+        </Row>
+
         <Container fluid>
           <p className="card-text">{idea.content}</p>
           <Row>
@@ -148,14 +172,15 @@ export const IdeaCard = ({ idea }) => {
                 <a href="#" onClick={() => setShowPopover(true)}>
                   <i className="far fa-trash-alt"></i>
                 </a>
-
               </OverlayTrigger>
             </Col>
             {/* update button */}
             <Col xs={1} className="idea-button">
-              <Link to={{
-                pathname: `/edit/${idea.id}`
-              }}>
+              <Link
+                to={{
+                  pathname: `/edit/${idea.id}`,
+                }}
+              >
                 <i className="fas fa-edit"></i>
               </Link>
             </Col>

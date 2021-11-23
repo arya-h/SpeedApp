@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IdeaList } from "./IdeaList";
+import { Box } from "@chakra-ui/layout";
 
 export const IdeasScreen = () => {
 
   return (
-    <div>
-      <div className="container-fluid px-5">
+    <Box className="container-fluid px-5" w="100%" h="200px" bgGradient="linear(to-t, green.200, pink.500)" >
+    <div>      
+      {/* <div className="container-fluid px-5"> */}
+  
         {/* TODO: Sidebar */}
         <div className="row">
           <div className="col-6">
@@ -24,6 +27,8 @@ export const IdeasScreen = () => {
         </div>
         <IdeaList />
       </div>
-    </div>
+      
+    {/* </div> */}
+    </Box>
   );
 };
