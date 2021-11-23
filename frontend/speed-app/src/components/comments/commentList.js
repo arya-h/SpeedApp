@@ -3,19 +3,13 @@ import { CommentCard } from './commentCard';
 
 import '../../style/comments.css';
 
-export const CommentList = ({ideaObject}) => {   
-
-    const comments = ideaObject.comments;
-    //console.log(comments);
-
-    // Rerender when list changes (Delete idea)
-    useEffect(() => {}, [comments])
-
+export const CommentList = ( { idea } ) => {
+    let numComments = idea.comments ? idea.comments.length : 0
     return (
         <div className="comment-list-container">
-            { comments.length === 0  ?
+            { numComments === 0  ?
                 <h6>There are no comments yet</h6> : 
-                comments.map(i => <CommentCard key={comments.indexOf(i)} comment={i}/>)
+                idea.comments.map(comment => <CommentCard key={comment.id} props={{'comment': comment, 'idea': idea }}/>)
             }
         </div>
     )

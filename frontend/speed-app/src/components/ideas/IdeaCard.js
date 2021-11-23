@@ -147,7 +147,7 @@ export const IdeaCard = ({ idea }) => {
             {/* comments */}
             <Col xs={1} className="idea-button">
               <a href="#" className="card-link" style={removeUnderline} onClick={onClickComments}>
-                <i className="far fa-comments"></i> {idea.comments.length}
+                <i className="far fa-comments"></i> {idea.comments?.length}
               </a>
             </Col>
 
@@ -179,7 +179,7 @@ export const IdeaCard = ({ idea }) => {
               <AddCommentInput ideaObject={idea}></AddCommentInput>
           </Row>
           <Row style={{display: showComments}}>
-              <CommentList ideaObject={idea}></CommentList>
+              <CommentList idea={ idea }></CommentList>
           </Row>
         </Container>
       </div>
