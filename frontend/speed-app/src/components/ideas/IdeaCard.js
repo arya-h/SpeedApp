@@ -4,6 +4,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
 import { AddCommentInput } from "../comments/AddCommentInput";
+import { CommentList } from "../comments/commentList";
 //redux
 import { Link } from "react-router-dom";
 
@@ -133,7 +134,7 @@ export const IdeaCard = ({ idea }) => {
             {/* comments */}
             <Col xs={1} className="idea-button">
               <a href="#" className="card-link" style={removeUnderline}>
-                <i className="far fa-comments"></i> 0
+                <i className="far fa-comments"></i>{idea.comments.length}
               </a>
             </Col>
 
@@ -163,6 +164,9 @@ export const IdeaCard = ({ idea }) => {
           </Row>
           <Row>
               <AddCommentInput ideaObject={idea}></AddCommentInput>
+          </Row>
+          <Row>
+              <CommentList ideaObject={idea}></CommentList>
           </Row>
         </Container>
       </div>
