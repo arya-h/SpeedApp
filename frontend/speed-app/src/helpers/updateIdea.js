@@ -5,5 +5,5 @@ export const updateIdea = async (idea) => {
     const ideaRef = doc(db, "ideas", idea.id);
 
     // update idea document
-    let response = await updateDoc(ideaRef, idea);
+    await updateDoc(ideaRef, idea);
 }

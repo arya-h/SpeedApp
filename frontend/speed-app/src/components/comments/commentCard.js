@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-import './AddCommentStyle.css'
+import '../../style/comments.css';
 
 export const CommentCard = ({ comment }) => {
     return(

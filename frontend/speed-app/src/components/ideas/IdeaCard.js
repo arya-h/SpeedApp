@@ -27,7 +27,7 @@ export const IdeaCard = ({ idea }) => {
   const dispatch = useDispatch();
 
   const onClickComments = () => {
-    if(showComments == 'none'){
+    if(showComments === 'none'){
       setShowComments('block');
     }else{
       setShowComments('none');
@@ -147,7 +147,7 @@ export const IdeaCard = ({ idea }) => {
             {/* comments */}
             <Col xs={1} className="idea-button">
               <a href="#" className="card-link" style={removeUnderline} onClick={onClickComments}>
-                <i className="far fa-comments"></i>{idea.comments.length}
+                <i className="far fa-comments"></i> {idea.comments.length}
               </a>
             </Col>
 

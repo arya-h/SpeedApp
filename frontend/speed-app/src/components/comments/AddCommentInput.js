@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { addNewComment } from '../../actions/comment';
 
-import './AddCommentStyle.css';
+import '../../style/comments.css';
 
 export const AddCommentInput = ({ideaObject}) => {   
     let [content, setContent] = useState("");

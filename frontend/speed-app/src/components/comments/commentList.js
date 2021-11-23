@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { CommentCard } from './commentCard';
 
-import './AddCommentStyle.css';
+import '../../style/comments.css';
 
 export const CommentList = ({ideaObject}) => {   
 

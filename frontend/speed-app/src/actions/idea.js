@@ -33,9 +33,7 @@ export const setIdeas = (ideas) => ({
 });
 
 export const updateIdeaAction = ( idea ) => {
-    return async () => {
-        const result = await updateIdea(idea);
-    }
+    return async () => { await updateIdea(idea); }
 }
 
 // Delete idea

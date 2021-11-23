@@ -19,5 +19,5 @@ export const addComment = async (idea, comment) => {
     }
 
     // update idea document
-    let response = await updateDoc(ideaRef, idea);
+    await updateDoc(ideaRef, idea);
 }
