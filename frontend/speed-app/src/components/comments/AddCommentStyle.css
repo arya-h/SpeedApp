@@ -22,3 +22,15 @@
     border: 1px solid #4D77FF;
     border-radius: 1rem;
 }
+
+.comment-list-container{
+    margin-top: 1rem;
+}
+
+.user-name-container{
+    margin: 0.5rem 0 0 1rem;
+}
+
+.user-comment-container{
+    margin: 0 0 0.5rem 1rem;
+}
