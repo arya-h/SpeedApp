@@ -16,6 +16,7 @@ export const AddCommentInput = ({ideaObject}) => {
             event.preventDefault();
             event.stopPropagation();
             dispatch(addNewComment(ideaObject, content));
+            setContent("")
             history.push("/");
         }
     }
