@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
+import { AddCommentInput } from "../comments/AddCommentInput";
+import { CommentList } from "../comments/commentList";
 //redux
 import { Link } from "react-router-dom";
 
@@ -20,8 +22,17 @@ export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
+  const [showComments, setShowComments] = useState('none')
 
   const dispatch = useDispatch();
+
+  const onClickComments = () => {
+    if(showComments === 'none'){
+      setShowComments('block');
+    }else{
+      setShowComments('none');
+    }
+  }
 
   // Handlers
   const handleDeleteConfirmation = async ( id ) => {
@@ -115,10 +126,14 @@ export const IdeaCard = ({ idea }) => {
   const removeUnderline = { textDecoration: "none" };
 
   return (
-    <div className="card my-3">
+    <div className="card standard-card">
       {/* <toastDelete /> */}
+      <div style={{display: 'flex', flexDirection: 'row', margin: '1.25rem 0rem 0 1.75rem'}}>
+        <i className="fas fa-user-circle" style={{fontSize:'1.5rem', marginRight: '0.5rem'}}></i>
+        <h5>Anonymous User</h5>
+      </div>
       <div className="card-body">
-        <h5 className="card-title">{idea.title}</h5>
+        <h5 className="card-title" style={{marginLeft: '0.75rem'}}>{idea.title}</h5>
         <Container fluid>
           <p className="card-text">{idea.content}</p>
           <Row>
@@ -131,8 +146,8 @@ export const IdeaCard = ({ idea }) => {
 
             {/* comments */}
             <Col xs={1} className="idea-button">
-              <a href="#" className="card-link" style={removeUnderline}>
-                <i className="far fa-comments"></i> 0
+              <a href="#" className="card-link" style={removeUnderline} onClick={onClickComments}>
+                <i className="far fa-comments"></i> {idea.comments.length}
               </a>
             </Col>
 
@@ -159,6 +174,12 @@ export const IdeaCard = ({ idea }) => {
                 <i className="fas fa-edit"></i>
               </Link>
             </Col>
+          </Row>
+          <Row style={{display: showComments}}>
+              <AddCommentInput ideaObject={idea}></AddCommentInput>
+          </Row>
+          <Row style={{display: showComments}}>
+              <CommentList ideaObject={idea}></CommentList>
           </Row>
         </Container>
       </div>
