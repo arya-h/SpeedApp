@@ -61,13 +61,14 @@ export const ideaReducer = (state = initialIdeas, action) => {
             }
 
         case types.deleteComment:
+            let ideaToModify = state.ideas.find(item => item.id === action.payload.ideaId);
+            ideaToModify.comments = ideaToModify.comments.filter(comment => comment.id !== action.payload.commentId)
             return {
                 ...state,
-                ideas: state.ideas.map(
-                    idea => idea.id === action.payload.id
-                    ? action.payload
-                    : idea
-                )
+                ideas: [
+                    ideaToModify,
+                    ...state.ideas.filter(item => item.id !== action.payload.ideaId),
+                ]
             }
 
         default:

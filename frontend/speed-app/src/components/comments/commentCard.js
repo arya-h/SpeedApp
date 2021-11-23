@@ -1,14 +1,20 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
 import { Card } from "react-bootstrap";
+import { startDeletingComment } from "../../actions/comment";
 
 import '../../style/comments.css';
 
 import { DotsButton } from "../ui/DotsButton";
 
-export const CommentCard = ({ comment }) => {
+export const CommentCard = ({props}) => {
 
-    const handleDeleteComment = () => {
-        console.log( comment.id )
+    const comment = props?.comment;
+    const idea = props?.idea;
+    const dispatch = useDispatch();
+
+    const handleDeleteComment = (ideaId, commentId) => {
+        dispatch(startDeletingComment(ideaId, commentId));
     }
 
     return(
@@ -20,15 +26,15 @@ export const CommentCard = ({ comment }) => {
                 <div className="user-name-container"><h6>{comment.user}</h6></div>
                 <div className="user-comment-container">{comment.content}</div>
 
-                {/* <DotsButton 
-                    id={ comment.id } 
+                { <DotsButton 
+                    id={ {'commentId': comment.id, 'ideaId': idea.id }} 
                     items={ [
                         { 
                             action: "Delete", 
-                            handler: handleDeleteComment 
+                            handler: handleDeleteComment
                         },
                     ]}
-                /> */}
+                /> }
             </Card>
         </div>
     );
