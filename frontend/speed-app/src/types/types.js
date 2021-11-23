@@ -7,5 +7,6 @@ export const types = {
     ideasDelete: '[Ideas] Delete idea',
 
     // Comments
-    addComment: '[Comments] Add Comment'
+    addComment: '[Comments] Add Comment',
+    deleteComment: '[Comments] Delete Comment'
 }
