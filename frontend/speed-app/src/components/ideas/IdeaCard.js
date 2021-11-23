@@ -179,7 +179,7 @@ export const IdeaCard = ({ idea }) => {
               <AddCommentInput ideaObject={idea}></AddCommentInput>
           </Row>
           <Row style={{display: showComments}}>
-              <CommentList ideaObject={idea}></CommentList>
+              <CommentList idea={ idea }></CommentList>
           </Row>
         </Container>
       </div>
