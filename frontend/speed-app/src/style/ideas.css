@@ -19,3 +19,8 @@
     margin: auto;
     
 }
+
+.standard-card{
+    border-radius: 2rem !important;
+    margin-bottom: 1rem;
+}

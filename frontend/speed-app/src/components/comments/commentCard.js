@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 export const CommentCard = ({ comment }) => {
     return(

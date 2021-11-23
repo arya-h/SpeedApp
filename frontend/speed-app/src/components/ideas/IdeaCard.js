@@ -117,10 +117,14 @@ export const IdeaCard = ({ idea }) => {
   const removeUnderline = { textDecoration: "none" };
 
   return (
-    <div className="card my-3">
+    <div className="card standard-card">
       {/* <toastDelete /> */}
+      <div style={{display: 'flex', flexDirection: 'row', margin: '1.25rem 0rem 0 1.75rem'}}>
+        <i className="fas fa-user-circle" style={{fontSize:'1.5rem', marginRight: '0.5rem'}}></i>
+        <h5>Anonymous User</h5>
+      </div>
       <div className="card-body">
-        <h5 className="card-title">{idea.title}</h5>
+        <h5 className="card-title" style={{marginLeft: '0.75rem'}}>{idea.title}</h5>
         <Container fluid>
           <p className="card-text">{idea.content}</p>
           <Row>
