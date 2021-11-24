@@ -4,7 +4,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
 //icons
-import { AiOutlineFieldTime } from "react-icons/ai";
+// import { AiOutlineFieldTime } from "react-icons/ai";
 
 //redux
 import { Link } from "react-router-dom";
@@ -114,18 +114,19 @@ export const IdeaCard = ({ idea }) => {
 
   // const milliseconds = unixTimestamp * 1000; // 1575909015000
 
-  const dateObject = new Date(unixTimestamp);
+  // const dateObject = new Date(unixTimestamp);
 
-  const dateString =
-    dateObject.getDate() +
-    "/" +
-    (dateObject.getMonth() + 1) +
-    "/" +
-    dateObject.getUTCFullYear();
+  // const dateString =
+  //   dateObject.getDate() +
+  //   "/" +
+  //   (dateObject.getMonth() + 1) +
+  //   "/" +
+  //   dateObject.getUTCFullYear();
 
   // 'Europe/Vienna'
 
   return (
+
     <div className="card my-3">
       {/* <toastDelete /> */}
       <div className="card-body">
@@ -135,11 +136,11 @@ export const IdeaCard = ({ idea }) => {
           </Col>
 
           <Col md={{ span: 3, offset: 5 }} >
-           <span className="title-timestamp">
+           {/* <span className="title-timestamp">
             <AiOutlineFieldTime />{" "}
             
             {dateObject.toLocaleString("en-ES", { timeZone: "Europe/Vienna" })}
-            </span> 
+            </span>  */}
           </Col>
         </Row>
 
@@ -188,5 +189,7 @@ export const IdeaCard = ({ idea }) => {
         </Container>
       </div>
     </div>
+
+
   );
 };

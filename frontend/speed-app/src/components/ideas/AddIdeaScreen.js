@@ -52,7 +52,7 @@ export const AddIdeaScreen = () => {
                 className="btn btn-primary mt-3"
                 onClick={() => {
                   //add timestamp to payload
-                  dispatch(addNewIdea({ title: title, content: content, comments: [], timestamp: Date.now()}));
+                  dispatch(addNewIdea({ title: title, content: content, comments: [], timestamp: Date.now(), likes:0}));
                   history.push("/");
                 }}
               >
