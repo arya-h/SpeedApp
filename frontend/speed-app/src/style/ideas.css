@@ -20,6 +20,15 @@
     
 }
 
+.idea-timestamp{
+    /* font-size: small; */
+    font-style: italic;
+    text-align: center;
+    width: 69%;
+    border-radius: 100px;
+    margin-top: 1%;
+}
+
 .standard-card{
     border-radius: 2rem !important;
     margin-bottom: 1rem;

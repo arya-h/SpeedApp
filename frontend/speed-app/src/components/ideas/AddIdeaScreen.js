@@ -51,7 +51,7 @@ export const AddIdeaScreen = () => {
               <button
                 className="btn btn-primary mt-3"
                 onClick={() => {
-                  dispatch(addNewIdea({ title: title, content: content, comments: [] }));
+                  dispatch(addNewIdea({ title: title, content: content, comments: [], likes:0 }));
                   history.push("/");
                 }}
               >

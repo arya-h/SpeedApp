@@ -11,8 +11,9 @@ export const addNewIdea = (idea) => {
 
         const improvedIdea = {
             ...idea,
-            creationDate: Date.now(),
-            comments: []
+            timestamp: Date.now(),
+            comments: [],
+            likes: 0
         }
 
         const ideaWithId = await addIdea(improvedIdea);

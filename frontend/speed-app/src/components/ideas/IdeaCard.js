@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { Gradient } from "react-gradient";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useState } from "react";
@@ -8,6 +9,9 @@ import { CommentList } from "../comments/commentList";
 //redux
 import { Link } from "react-router-dom";
 
+//icon
+import { AiOutlineFieldTime } from "react-icons/ai";
+
 //import delete items from firestore
 import { doc, deleteDoc } from "firebase/firestore";
 //firestore
@@ -15,6 +19,7 @@ import { db } from "../../firebase/firebase-config";
 
 //stylesheet
 import "../../style/ideas.css";
+
 import { startDeleting } from "../../actions/idea";
 import { useDispatch } from "react-redux";
 
@@ -22,40 +27,38 @@ export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
-  const [showComments, setShowComments] = useState('none')
+  const [showComments, setShowComments] = useState("none");
 
   const dispatch = useDispatch();
 
   const onClickComments = () => {
-    if(showComments === 'none'){
-      setShowComments('block');
-    }else{
-      setShowComments('none');
+    if (showComments === "none") {
+      setShowComments("block");
+    } else {
+      setShowComments("none");
     }
-  }
+  };
 
   // Handlers
-  const handleDeleteConfirmation = async ( id ) => {
+  const handleDeleteConfirmation = async (id) => {
     setLoadingDelete(true);
-    dispatch( 
-      await startDeleting( id )).then(
-        ()=>{
-          setTimeout((o) => setLoadingDelete(!o), 2000);
-        }
-      ).catch(
-        (err)=>{
-          alert("There was an error while deleting your idea: ", err);
-        }
-      ); 
-  } 
+    dispatch(await startDeleting(id))
+      .then(() => {
+        setTimeout((o) => setLoadingDelete(!o), 2000);
+      })
+      .catch((err) => {
+        alert("There was an error while deleting your idea: ", err);
+      });
+  };
 
   //triggered when clicking on Yes button in popover
   const deleteIdea = async (id) => {
-    
     setLoadingDelete(true);
 
     await deleteDoc(doc(db, "ideas", id))
-    .then(()=>{setTimeout((o) => setLoadingDelete(!o), 3000);})
+      .then(() => {
+        setTimeout((o) => setLoadingDelete(!o), 3000);
+      })
       .then(() => {
         //success
         setShowPopover(false);
@@ -64,13 +67,17 @@ export const IdeaCard = ({ idea }) => {
         //     type: types.ideasDelete,
         //     payload : id,
         // }});
-        
       })
-      .catch((err) => {   
+      .catch((err) => {
         setShowPopover(false);
         setShowErrorDelete(true);
       });
   };
+
+  const gradients = [
+    ["#f8cc9d", "#ffeb9e"],
+    ["#fce5cd", "#25c668"],
+  ];
 
   //popover to ask user if he's sure about deleting the idea
   const popover = (
@@ -78,7 +85,7 @@ export const IdeaCard = ({ idea }) => {
       <Popover.Header as="h3">Delete idea</Popover.Header>
       <Popover.Body>
         <Container fluid>
-            {/* show spinner only if loading */}
+          {/* show spinner only if loading */}
           {loadingDelete ? (
             <Spinner
               animation="border"
@@ -101,7 +108,9 @@ export const IdeaCard = ({ idea }) => {
                 variant="danger"
                 disabled={loadingDelete}
                 // onClick={() => deleteIdea(idea.id)}
-                onClick={ ( e ) => { handleDeleteConfirmation(idea.id, e) } }
+                onClick={(e) => {
+                  handleDeleteConfirmation(idea.id, e);
+                }}
               >
                 Yes
               </Button>
@@ -125,28 +134,73 @@ export const IdeaCard = ({ idea }) => {
 
   const removeUnderline = { textDecoration: "none" };
 
+  const unixTimestamp = idea.timestamp;
+  const dateObject = new Date(unixTimestamp);
+
+  const dateString =
+    dateObject.getDate() +
+    "/" +
+    (dateObject.getMonth() + 1) +
+    "/" +
+    dateObject.getUTCFullYear();
+
   return (
     <div className="card standard-card">
       {/* <toastDelete /> */}
-      <div style={{display: 'flex', flexDirection: 'row', margin: '1.25rem 0rem 0 1.75rem'}}>
-        <i className="fas fa-user-circle" style={{fontSize:'1.5rem', marginRight: '0.5rem'}}></i>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          margin: "1.25rem 0rem 0 1.75rem",
+        }}
+      >
+        <i
+          className="fas fa-user-circle"
+          style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
+        ></i>
         <h5>Anonymous User</h5>
       </div>
       <div className="card-body">
-        <h5 className="card-title" style={{marginLeft: '0.75rem'}}>{idea.title}</h5>
+        <Row>
+          <Col xs={4}>
+            <h5 className="card-title">{idea.title} </h5>
+          </Col>
+
+          <Col md={{ span: 3, offset: 5 }} >
+            <Gradient
+              gradients={gradients} // required
+              property="background"
+              duration={3000}
+              angle="45deg"
+              className="idea-timestamp"
+            >
+              <span className="title-timestamp">
+                <AiOutlineFieldTime />{" "}
+                {dateObject.toLocaleString("en-ES", {
+                  timeZone: "Europe/Vienna",
+                })}
+              </span>
+            </Gradient>
+          </Col>
+        </Row>
+
         <Container fluid>
           <p className="card-text">{idea.content}</p>
           <Row>
             {/* likes */}
             <Col xs={1} className="idea-button">
-              <a href="#" className="card-link" style={removeUnderline}>
-                <i className="fas fa-thumbs-up"></i> 0
+              <a className="card-link" style={removeUnderline}>
+                <i className="fas fa-thumbs-up"></i> {idea.likes}
               </a>
             </Col>
 
             {/* comments */}
             <Col xs={1} className="idea-button">
-              <a href="#" className="card-link" style={removeUnderline} onClick={onClickComments}>
+              <a
+                className="card-link"
+                style={removeUnderline}
+                onClick={onClickComments}
+              >
                 <i className="far fa-comments"></i> {idea.comments?.length}
               </a>
             </Col>
@@ -160,26 +214,27 @@ export const IdeaCard = ({ idea }) => {
                 placement="right"
                 overlay={popover}
               >
-                <a href="#" onClick={() => setShowPopover(true)}>
+                <a onClick={() => setShowPopover(true)}>
                   <i className="far fa-trash-alt"></i>
                 </a>
-
               </OverlayTrigger>
             </Col>
             {/* update button */}
             <Col xs={1} className="idea-button">
-              <Link to={{
-                pathname: `/edit/${idea.id}`
-              }}>
+              <Link
+                to={{
+                  pathname: `/edit/${idea.id}`,
+                }}
+              >
                 <i className="fas fa-edit"></i>
               </Link>
             </Col>
           </Row>
-          <Row style={{display: showComments}}>
-              <AddCommentInput ideaObject={idea}></AddCommentInput>
+          <Row style={{ display: showComments }}>
+            <AddCommentInput ideaObject={idea}></AddCommentInput>
           </Row>
-          <Row style={{display: showComments}}>
-              <CommentList idea={ idea }></CommentList>
+          <Row style={{ display: showComments }}>
+            <CommentList idea={idea}></CommentList>
           </Row>
         </Container>
       </div>
