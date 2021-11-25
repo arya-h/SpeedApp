@@ -5,7 +5,6 @@ import { Gradient } from "react-gradient";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
-import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import Swal from 'sweetalert2'
 
@@ -43,7 +42,7 @@ export const IdeaCard = ({ idea }) => {
   const [showComments, setShowComments] = useState("none");
   const [updatedLikes, setUpdatedLikes] = useState(idea.likes);
   const [disableLike, setDisableLike] = useState(false);
-  const [showComments, setShowComments] = useState('none')
+  // const [showComments, setShowComments] = useState('none')
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -148,6 +147,12 @@ export const IdeaCard = ({ idea }) => {
                 Yes
               </Button>
             </Col>
+            </Row>
+            </Container>
+
+                </Popover.Body>
+            </Popover>
+  )
 
   const handleDelete = async ( { id } ) => {
     Swal.fire({
@@ -212,7 +217,7 @@ export const IdeaCard = ({ idea }) => {
 
       <UserDateDisplay 
         userName = {idea.user}
-        date = {idea.creationDate}
+        date = {idea.timestamp}
       />
 
       {/* Card body */}
@@ -291,7 +296,7 @@ export const IdeaCard = ({ idea }) => {
             </Col>
           </Row>
 
-          </Row>
+          
 
         {/* Comment section */}
           <Row style={{display: showComments}}>

@@ -14,7 +14,7 @@ export const addNewIdea = (idea) => {
             ...idea,
             timestamp: Date.now(),
             comments: [],
-            likes: 0
+            likes: 0,
             user:'Annonymous user'
         }
 
