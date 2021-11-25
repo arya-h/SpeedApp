@@ -53,11 +53,14 @@ export const CommentCard = ({ props }) => {
         <Row>
           <Col>
             <div className="user-name-container">
-              <h6>{comment.user}</h6>
+              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user}</h6>
+              <span className="comment-timestamp">{dateObject.toLocaleString("en-ES", {
+                  timeZone: "Europe/Madrid",
+                })}{" "}</span>
             </div>
           </Col>
 
-          <Col
+         {/* <Col
             xs={{ span: "2", offset: "3" }}
             className="comment-timestamp"
             style={{ alignContent: "center", borderWidth: "20%" }}
@@ -70,7 +73,7 @@ export const CommentCard = ({ props }) => {
               style={{ borderRadius: "20px" }}
             >
               <span
-                /*className="comment-timestamp"*/ style={{
+                className="comment-timestamp" style={{
                   margin: "15%",
                   marginTop:"5%",
                   borderRadius: "20px",
@@ -83,7 +86,7 @@ export const CommentCard = ({ props }) => {
             </Gradient>
           </Col>
 
-          {/* comment timestamp */}
+           comment timestamp */}
         </Row>
 
         <Row>
