@@ -1,9 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { OverlayTrigger } from "react-bootstrap";
 import { useState } from "react";
 import Swal from 'sweetalert2'
-
 
 import { AddCommentInput } from "../comments/AddCommentInput";
 import { CommentList } from "../comments/commentList";
@@ -18,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { DotsButton } from "../ui/DotsButton";
 import { DropDownButton } from "../ui/DropDownButton";
 import { BsFillTrashFill } from "react-icons/bs";
+import { UserDateDisplay } from "../ui/UserDateDisplay";
 
 export const IdeaCard = ({ idea }) => {
   const [showComments, setShowComments] = useState('none')
@@ -61,11 +60,10 @@ export const IdeaCard = ({ idea }) => {
   return (
     <div className="card standard-card">
 
-        {/* User display */}
-      <div style={{display: 'flex', flexDirection: 'row', margin: '1.25rem 0rem 0 1.75rem'}}>
-        <i className="fas fa-user-circle" style={{fontSize:'1.5rem', marginRight: '0.5rem'}}></i>
-        <h5>Anonymous User</h5>
-      </div>
+      <UserDateDisplay 
+        userName = {idea.user}
+        date = {idea.creationDate}
+      />
 
       {/* Card body */}
       <div className="card-body">
