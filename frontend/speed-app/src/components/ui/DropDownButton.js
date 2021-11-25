@@ -4,7 +4,8 @@ import '../../style/components/dropdownbtn.css';
 export const DropDownButton = ( { icon,  title } ) => {
     return (
         <span className={"dropdown__item"}>
-            { icon }   |   { title } 
+            { icon }  
+            <span className={"drop__title"}>{ title } </span>
         </span>
     )
 }
