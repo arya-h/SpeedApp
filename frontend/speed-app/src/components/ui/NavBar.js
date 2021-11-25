@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../../assets/speed-app-logo.png";
+import logo from "../../assets/SpeedApp-Icon.png";
 import { types } from "../../types/types";
 
 const NavBar = () => {
