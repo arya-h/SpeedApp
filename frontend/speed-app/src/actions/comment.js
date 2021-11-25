@@ -12,9 +12,9 @@ export const addNewComment = (idea, content) => {
     return async (dispatch) => {
 
         let richComment = {
-            user:"Annonymous user",
+            user:"Anonymous user",
             content: content,
-            creationDate: Date.now(),
+            timestamp: Date.now(),
         }
 
         const docRef = await addDoc(collection(db, `ideas/${ idea.id }/comments`), richComment);
