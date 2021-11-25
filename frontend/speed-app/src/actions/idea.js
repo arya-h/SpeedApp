@@ -1,9 +1,10 @@
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
 
 import { addIdea } from "../helpers/addIdea";
 import { loadIdeas } from "../helpers/loadIdeas";
 import { updateIdea } from "../helpers/updateIdea";
+import { likeIdea } from "../helpers/likeIdea";
 import { types } from "../types/types";
 
 export const addNewIdea = (idea) => {
@@ -43,6 +44,23 @@ export const setIdeas = (ideas) => ({
 export const updateIdeaAction = ( idea ) => {
     return async () => { await updateIdea(idea); }
 }
+
+//like idea
+export const likeIdeaAction = (idea) =>{
+    console.log("inside likeIdeaAction : ", idea)
+    //after update
+    idea.likes+=1;
+    return async ()=>{ await likeIdea(idea);}
+    // return async (dispatch) =>{
+    //     const ideaRef = doc(db, "ideas", idea.id);
+
+    //         // update idea document
+    //         await updateDoc(ideaRef, idea);
+    //         dispatch(likeIdea(idea.id));
+    // }
+}
+
+
 
 // Delete idea
 export const startDeleting = ( id ) => {

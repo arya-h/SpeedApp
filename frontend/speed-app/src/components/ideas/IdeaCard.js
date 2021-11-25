@@ -20,8 +20,9 @@ import { db } from "../../firebase/firebase-config";
 //stylesheet
 import "../../style/ideas.css";
 
-import { startDeleting } from "../../actions/idea";
+import { likeIdeaAction, startDeleting } from "../../actions/idea";
 import { useDispatch } from "react-redux";
+import { likeIdea } from "../../helpers/likeIdea";
 
 export const IdeaCard = ({ idea }) => {
   const [showPopover, setShowPopover] = useState(false); //delete popover state
@@ -50,6 +51,12 @@ export const IdeaCard = ({ idea }) => {
         alert("There was an error while deleting your idea: ", err);
       });
   };
+
+  const handleLikeIdea = async (idea)=>{
+    console.log("id:" + idea.id , ", likes : ", idea.likes)
+    
+    dispatch(await likeIdeaAction(idea));
+  }
 
   //triggered when clicking on Yes button in popover
   const deleteIdea = async (id) => {
@@ -132,6 +139,8 @@ export const IdeaCard = ({ idea }) => {
     </Popover>
   );
 
+
+
   const removeUnderline = { textDecoration: "none" };
 
   const unixTimestamp = idea.timestamp;
@@ -189,8 +198,9 @@ export const IdeaCard = ({ idea }) => {
           <Row>
             {/* likes */}
             <Col xs={1} className="idea-button">
-              <a className="card-link" style={removeUnderline}>
-                <i className="fas fa-thumbs-up"></i> {idea.likes}
+              <a className="card-link" style={removeUnderline} onClick={()=>{handleLikeIdea(idea)}} >
+                <i className="fas fa-thumbs-up"></i> {idea.likes ? idea.likes : 0}
+                
               </a>
             </Col>
 
