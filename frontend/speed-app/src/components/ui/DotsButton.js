@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Dropdown } from 'react-bootstrap';
 import { BsThreeDots } from 'react-icons/bs';
-import { useHistory } from 'react-router';
 
 import '../../style/components/dots.css';
 
@@ -21,8 +20,6 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 
 export const DotsButton = ( props ) => {
 
-  const history = useHistory();
-
     return (
         <div className="dots__container">
         <Dropdown>
@@ -33,10 +30,12 @@ export const DotsButton = ( props ) => {
             <Dropdown.Menu>
                 {
                   props.items?.map( item => (
-                      <Dropdown.Item key={props?.id?.commentId} onClick={ () => {
-                        item.handler(props?.id?.ideaId, props?.id?.commentId);
-                        history.push("/");
-                      } }>{ item.action }</Dropdown.Item>
+                      <Dropdown.Item 
+                        key={ item.id } 
+                        onClick={ () => { item.handler( item.args ); } }
+                      >
+                        { item.action }
+                      </Dropdown.Item>
                   ))
                 }
             </Dropdown.Menu>
