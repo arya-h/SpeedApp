@@ -7,14 +7,21 @@ import '../../style/comments.css';
 
 import { DotsButton } from "../ui/DotsButton";
 
+// Dropdown
+import { BsFillTrashFill } from 'react-icons/bs';
+import { DropDownButton } from "../ui/DropDownButton";
+
+
+
 export const CommentCard = ({props}) => {
 
     const comment = props?.comment;
     const idea = props?.idea;
     const dispatch = useDispatch();
 
-    const handleDeleteComment = (ideaId, commentId) => {
-        dispatch(startDeletingComment(ideaId, commentId));
+    const handleDeleteComment = ( args ) => {
+        console.log(args);
+        dispatch(startDeletingComment( args.ideaId, args.commentId));
     }
 
     return(
@@ -26,15 +33,16 @@ export const CommentCard = ({props}) => {
                 <div className="user-name-container"><h6>{comment.user}</h6></div>
                 <div className="user-comment-container">{comment.content}</div>
 
-                { <DotsButton 
-                    id={ {'commentId': comment.id, 'ideaId': idea.id }} 
-                    items={ [
+                <DotsButton  
+                    items = { [
                         { 
-                            action: "Delete", 
-                            handler: handleDeleteComment
+                            id: comment.id,
+                            action: DropDownButton( { icon:BsFillTrashFill(),  title:"Delete"} ), 
+                            handler: handleDeleteComment,
+                            args: { ideaId: idea.id, commentId:comment.id } 
                         },
                     ]}
-                /> }
+                />
             </Card>
         </div>
     );
