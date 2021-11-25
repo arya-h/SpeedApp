@@ -59,7 +59,7 @@ export const CommentCard = ({ props }) => {
 
 
          
-          <Col xs={{ span: "2", offset: "5" }} className="comment-timestamp" style={{alignItems:"center", borderWidth:"20%"}}>
+          <Col xs={{ span: "2", offset: "5" }} className="comment-timestamp" style={{alignContent:"center", borderWidth:"20%"}}>
           <Gradient
                 gradients={ gradients } // required
                 property="background"

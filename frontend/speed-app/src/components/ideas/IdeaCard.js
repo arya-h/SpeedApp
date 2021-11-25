@@ -29,6 +29,8 @@ export const IdeaCard = ({ idea }) => {
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [showComments, setShowComments] = useState("none");
+  const [updatedLikes, setUpdatedLikes] = useState(idea.likes);
+  const [disableLike, setDisableLike] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -53,9 +55,18 @@ export const IdeaCard = ({ idea }) => {
   };
 
   const handleLikeIdea = async (idea)=>{
-    console.log("id:" + idea.id , ", likes : ", idea.likes)
     
-    dispatch(await likeIdeaAction(idea));
+    if(disableLike){
+      return
+    }
+    else{
+      setUpdatedLikes(o => o+=1);
+      idea.likes++;
+      dispatch(await likeIdeaAction(idea));
+      setDisableLike(true);
+    }
+
+
   }
 
   //triggered when clicking on Yes button in popover
@@ -199,7 +210,7 @@ export const IdeaCard = ({ idea }) => {
             {/* likes */}
             <Col xs={1} className="idea-button">
               <a className="card-link" style={removeUnderline} onClick={()=>{handleLikeIdea(idea)}} >
-                <i className="fas fa-thumbs-up"></i> {idea.likes ? idea.likes : 0}
+                <i className="fas fa-thumbs-up"></i> {updatedLikes}
                 
               </a>
             </Col>

@@ -47,17 +47,9 @@ export const updateIdeaAction = ( idea ) => {
 
 //like idea
 export const likeIdeaAction = (idea) =>{
-    console.log("inside likeIdeaAction : ", idea)
-    //after update
-    idea.likes+=1;
+    
     return async ()=>{ await likeIdea(idea);}
-    // return async (dispatch) =>{
-    //     const ideaRef = doc(db, "ideas", idea.id);
 
-    //         // update idea document
-    //         await updateDoc(ideaRef, idea);
-    //         dispatch(likeIdea(idea.id));
-    // }
 }
 
 
