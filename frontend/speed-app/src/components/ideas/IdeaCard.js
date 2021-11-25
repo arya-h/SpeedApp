@@ -199,7 +199,7 @@ export const IdeaCard = ({ idea }) => {
   return (
     <div className="card standard-card">
 
-      {/* <toastDelete /> */}
+      {/* <toastDelete /> 
       <div
         style={{
           display: "flex",
@@ -212,10 +212,10 @@ export const IdeaCard = ({ idea }) => {
           style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
         ></i>
         <h5>Anonymous User</h5>
-      </div>
+      </div>*/}
 
 
-      <UserDateDisplay 
+      {/**/}<UserDateDisplay 
         userName = {idea.user}
         date = {idea.timestamp}
       />
@@ -225,10 +225,10 @@ export const IdeaCard = ({ idea }) => {
       <div className="card-body">
         <Row>
           <Col xs={4}>
-            <h5 className="card-title">{idea.title} </h5>
+            <h5 className="card-title" style={{marginLeft: "0.75rem"}}>{idea.title} </h5>
           </Col>
 
-          <Col md={{ span: 3, offset: 5 }} >
+          {/*<Col md={{ span: 3, offset: 5 }} >
             <Gradient
               gradients={gradients} // required
               property="background"
@@ -243,7 +243,7 @@ export const IdeaCard = ({ idea }) => {
                 })}
               </span>
             </Gradient>
-          </Col>
+              </Col>*/}
         </Row>
 
         <Container fluid>
@@ -270,7 +270,7 @@ export const IdeaCard = ({ idea }) => {
             </Col>
 
 
-            {/* delete button */}
+            {/* delete button 
             <Col xs={1} className="idea-button">
               <OverlayTrigger
                 show={showPopover}
@@ -283,8 +283,8 @@ export const IdeaCard = ({ idea }) => {
                   <i className="far fa-trash-alt"></i>
                 </a>
               </OverlayTrigger>
-            </Col>
-            {/* update button */}
+            </Col>*/}
+            {/* update button 
             <Col xs={1} className="idea-button">
               <Link
                 to={{
@@ -293,7 +293,7 @@ export const IdeaCard = ({ idea }) => {
               >
                 <i className="fas fa-edit"></i>
               </Link>
-            </Col>
+            </Col>*/}
           </Row>
 
           

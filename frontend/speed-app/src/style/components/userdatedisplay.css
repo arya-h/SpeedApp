@@ -2,25 +2,24 @@
     display:flex;
     flex-direction:row;
     justify-content:start;
-    align-items:center;
-    padding-left:1.75rem;
+    align-items: center;
+    padding:0rem 0rem 0rem 1.75rem;
 
 }
 .post__body{
     display: flex;
     flex-direction:column; 
     align-items: start; 
-    justify-content: start;
-    width:50%;
-    padding: 1rem;
-}
-
-.post__icon{
-    width:3rem;
-    height:auto;
+    justify-content: center;
+    min-width:7rem;
+    padding: 1rem 0.5rem 0rem 0.75rem;
 }
 
 .post__username{
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
+}
+
+.post__date{
+    font-size: 1rem;
 }
