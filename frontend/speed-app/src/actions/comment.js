@@ -40,7 +40,7 @@ export const createComment = ( newIdea ) => {
 }
 
 // Delete comment
-export const startDeletingComment = (ideaId, commentId) => {
+export const startDeletingComment = ({ ideaId, commentId }) => {
     return async ( dispatch ) => {
 
         await deleteDoc( doc(db, `ideas/${ ideaId }/comments`, commentId) );
