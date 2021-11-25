@@ -1,13 +1,19 @@
 import React from "react";
+
 import Button from "react-bootstrap/Button";
 import { Gradient } from "react-gradient";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
+import { useHistory } from 'react-router-dom';
+import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
+import Swal from 'sweetalert2'
+
 import { AddCommentInput } from "../comments/AddCommentInput";
 import { CommentList } from "../comments/commentList";
 //redux
 import { Link } from "react-router-dom";
+
 
 //icon
 import { AiOutlineFieldTime } from "react-icons/ai";
@@ -24,13 +30,21 @@ import { likeIdeaAction, startDeleting } from "../../actions/idea";
 import { useDispatch } from "react-redux";
 import { likeIdea } from "../../helpers/likeIdea";
 
+import { DotsButton } from "../ui/DotsButton";
+import { DropDownButton } from "../ui/DropDownButton";
+import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import { UserDateDisplay } from "../ui/UserDateDisplay";
+
 export const IdeaCard = ({ idea }) => {
+
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [showComments, setShowComments] = useState("none");
   const [updatedLikes, setUpdatedLikes] = useState(idea.likes);
   const [disableLike, setDisableLike] = useState(false);
+  const [showComments, setShowComments] = useState('none')
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -43,6 +57,7 @@ export const IdeaCard = ({ idea }) => {
   };
 
   // Handlers
+
   const handleDeleteConfirmation = async (id) => {
     setLoadingDelete(true);
     dispatch(await startDeleting(id))
@@ -134,21 +149,33 @@ export const IdeaCard = ({ idea }) => {
               </Button>
             </Col>
 
-            <Col>
-              {/* button will be disabled while deleting */}
-              <Button
-                variant="primary"
-                disabled={loadingDelete}
-                onClick={(o) => setShowPopover(!o)}
-              >
-                Cancel
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </Popover.Body>
-    </Popover>
-  );
+  const handleDelete = async ( { id } ) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        dispatch( startDeleting( id ) ); 
+
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+  } 
+
+
+  const handleUpdate = ( { path } ) => {
+    history.push( path )
+  } 
 
 
 
@@ -166,6 +193,7 @@ export const IdeaCard = ({ idea }) => {
 
   return (
     <div className="card standard-card">
+
       {/* <toastDelete /> */}
       <div
         style={{
@@ -180,6 +208,15 @@ export const IdeaCard = ({ idea }) => {
         ></i>
         <h5>Anonymous User</h5>
       </div>
+
+
+      <UserDateDisplay 
+        userName = {idea.user}
+        date = {idea.creationDate}
+      />
+
+      {/* Card body */}
+
       <div className="card-body">
         <Row>
           <Col xs={4}>
@@ -207,7 +244,8 @@ export const IdeaCard = ({ idea }) => {
         <Container fluid>
           <p className="card-text">{idea.content}</p>
           <Row>
-            {/* likes */}
+
+            {/* likes button */}
             <Col xs={1} className="idea-button">
               <a className="card-link" style={removeUnderline} onClick={()=>{handleLikeIdea(idea)}} >
                 <i className="fas fa-thumbs-up"></i> {updatedLikes}
@@ -215,7 +253,7 @@ export const IdeaCard = ({ idea }) => {
               </a>
             </Col>
 
-            {/* comments */}
+            {/* comment button */}
             <Col xs={1} className="idea-button">
               <a
                 className="card-link"
@@ -225,6 +263,7 @@ export const IdeaCard = ({ idea }) => {
                 <i className="far fa-comments"></i> {idea.comments?.length}
               </a>
             </Col>
+
 
             {/* delete button */}
             <Col xs={1} className="idea-button">
@@ -251,14 +290,39 @@ export const IdeaCard = ({ idea }) => {
               </Link>
             </Col>
           </Row>
-          <Row style={{ display: showComments }}>
-            <AddCommentInput ideaObject={idea}></AddCommentInput>
+
+          </Row>
+
+        {/* Comment section */}
+          <Row style={{display: showComments}}>
+              <AddCommentInput ideaObject={idea}></AddCommentInput>
+
           </Row>
           <Row style={{ display: showComments }}>
             <CommentList idea={idea}></CommentList>
           </Row>
+
         </Container>
-      </div>
-    </div>
+
+        </div> {/*  //Card body */}
+
+        <DotsButton  
+                    items = { [
+                        { 
+                            id: idea.id,
+                            action: DropDownButton( { icon:BsFillTrashFill(),  title:"Delete"} ), 
+                            handler: handleDelete,
+                            args: { id: idea.id  } 
+                        },
+                        {
+                          id: idea.id,
+                          action: DropDownButton( { icon:BsFillPencilFill(),  title:"Update"} ), 
+                          handler: handleUpdate,
+                          args: { path:`/edit/${idea.id}` } 
+                        }
+                    ]}
+                />
+
+    </div> 
   );
 };

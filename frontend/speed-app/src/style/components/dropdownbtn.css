@@ -1,0 +1,10 @@
+.dropdown__item{
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    padding:0.5rem;
+}
+
+.drop__title{
+    padding-left: 1rem;
+}

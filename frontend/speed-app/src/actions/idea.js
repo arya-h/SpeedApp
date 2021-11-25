@@ -15,6 +15,7 @@ export const addNewIdea = (idea) => {
             timestamp: Date.now(),
             comments: [],
             likes: 0
+            user:'Annonymous user'
         }
 
         const ideaWithId = await addIdea(improvedIdea);

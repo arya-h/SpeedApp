@@ -9,17 +9,18 @@ import "../../style/comments.css";
 
 import { DotsButton } from "../ui/DotsButton";
 
-export const CommentCard = ({ props }) => {
-  const comment = props?.comment;
-  const idea = props?.idea;
-  const dispatch = useDispatch();
+
+
+export const CommentCard = ({props}) => {
 
   const handleDeleteComment = (ideaId, commentId) => {
     dispatch(startDeletingComment(ideaId, commentId));
   };
 
+
   const unixTimestamp = comment.timestamp;
   const dateObject = new Date(unixTimestamp);
+
 
   const gradients = [
     ['#add3ef', '#cfd6f4'],
@@ -45,6 +46,9 @@ export const CommentCard = ({ props }) => {
       <div className="profile-pic-container">
         <i className="fas fa-user-circle" style={{ fontSize: "1.5rem" }}></i>
       </div>
+
+
+
       <Card
         style={{ width: "100%", borderRadius: "1rem", position: "relative" }}
       >
@@ -54,6 +58,7 @@ export const CommentCard = ({ props }) => {
             <div className="user-name-container">
               <h6>{comment.user}</h6>
             </div>
+
           </Col>
           {/* comment timestamp */}
 
@@ -95,3 +100,21 @@ export const CommentCard = ({ props }) => {
     </div>
   );
 };
+
+           
+                
+
+                <DotsButton  
+                    items = { [
+                        { 
+                            id: comment.id,
+                            action: DropDownButton( { icon:BsFillTrashFill(),  title:"Delete"} ), 
+                            handler: handleDeleteComment,
+                            args: { ideaId: idea.id, commentId:comment.id } 
+                        },
+                    ]}
+                />
+            </Card>
+        </div>
+    );
+}
