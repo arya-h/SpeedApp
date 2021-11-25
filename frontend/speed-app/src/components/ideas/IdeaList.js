@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
-import { IdeaCard } from './IdeaCard'
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { IdeaCard } from "./IdeaCard";
 
-export const IdeaList = () => {   
+export const IdeaList = () => {
+  const filter = useSelector((state) => state.filter);
+  const { ideas } = useSelector((state) => state.ideas);
 
-    const { ideas } = useSelector((state) => state.ideas);
+  const filteredIdeas = ideas.filter((x) =>
+    x.title.toLowerCase().includes(filter.toLowerCase())
+  );
+  // Rerender when list changes (Delete idea)
+  useEffect(() => {}, [ideas]);
 
-    // Rerender when list changes (Delete idea)
-    useEffect(() => {}, [ideas])
-
-    return (
-        <div >
-            { ideas.length === 0 ?
-                <h1>There are no ideas yet</h1> : 
-                ideas.map(i => <IdeaCard key={i.id} idea={i} />)
-            }
-        </div>
-    )
-}
+  return (
+    <div>
+      {ideas.length === 0 ? (
+        <h1>There are no ideas yet</h1>
+      ) : (
+        filteredIdeas.map((i) => <IdeaCard key={i.id} idea={i} />)
+      )}
+    </div>
+  );
+};
