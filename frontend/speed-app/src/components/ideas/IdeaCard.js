@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import Swal from 'sweetalert2'
@@ -15,11 +16,12 @@ import { useDispatch } from "react-redux";
 
 import { DotsButton } from "../ui/DotsButton";
 import { DropDownButton } from "../ui/DropDownButton";
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { UserDateDisplay } from "../ui/UserDateDisplay";
 
 export const IdeaCard = ({ idea }) => {
   const [showComments, setShowComments] = useState('none')
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -55,6 +57,10 @@ export const IdeaCard = ({ idea }) => {
     })
   } 
 
+  const handleUpdate = ( { path } ) => {
+    history.push( path )
+  } 
+
   const removeUnderline = { textDecoration: "none" };
 
   return (
@@ -85,19 +91,6 @@ export const IdeaCard = ({ idea }) => {
                 <i className="far fa-comments"></i> {idea.comments?.length}
               </a>
             </Col>
-
-            {/* delete button */}
-            <Col xs={1} className="idea-button">
-
-            </Col>
-            {/* update button */}
-            <Col xs={1} className="idea-button">
-              <Link to={{
-                pathname: `/edit/${idea.id}`
-              }}>
-                <i className="fas fa-edit"></i>
-              </Link>
-            </Col>
           </Row>
 
         {/* Comment section */}
@@ -120,6 +113,12 @@ export const IdeaCard = ({ idea }) => {
                             handler: handleDelete,
                             args: { id: idea.id  } 
                         },
+                        {
+                          id: idea.id,
+                          action: DropDownButton( { icon:BsFillPencilFill(),  title:"Update"} ), 
+                          handler: handleUpdate,
+                          args: { path:`/edit/${idea.id}` } 
+                        }
                     ]}
                 />
 
