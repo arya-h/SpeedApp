@@ -1,0 +1,24 @@
+@media only screen and (min-width: 600px){
+    .dots__container{
+        position: absolute;
+        top: 0.25rem;
+        right: 0.5rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+}
+
+.dots__container{
+    text-align: center;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+    padding:0.25rem;
+    transition:0.3s;
+}
+
+.dots__container:hover{
+    background-color: rgb(199, 214, 255);
+    border-radius: 350px;
+}
+
+

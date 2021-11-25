@@ -30,7 +30,7 @@ export const ideaReducer = (state = initialIdeas, action) => {
         case types.ideasAddNew:
             return {
                 ...state,
-                notes: [...state.ideas, {...action.payload}]
+                ideas: [...state.ideas, {...action.payload}]
             }
 
         case types.ideasUpdate:
@@ -43,10 +43,32 @@ export const ideaReducer = (state = initialIdeas, action) => {
                 )
             }
 
-        case types.ideaDelete:
+        case types.ideasDelete:
             return {
                 ...state,
                 ideas: state.ideas.filter ( idea => idea.id !== action.payload )
+            }
+
+// Comments
+        case types.addComment:
+            return{
+                ...state,
+                ideas: state.ideas.map(
+                    idea => idea.id === action.payload.id
+                    ? action.payload
+                    : idea
+                )
+            }
+
+        case types.deleteComment:
+            let ideaToModify = state.ideas.find(item => item.id === action.payload.ideaId);
+            ideaToModify.comments = ideaToModify.comments.filter(comment => comment.id !== action.payload.commentId)
+            return {
+                ...state,
+                ideas: [
+                    ideaToModify,
+                    ...state.ideas.filter(item => item.id !== action.payload.ideaId),
+                ]
             }
 
         default:

@@ -1,0 +1,36 @@
+.comment-container{
+    margin-top: 0.75rem;
+}
+
+.profile-pic-container{
+    margin: 0.25rem 0.5rem 0 0;
+}
+
+.comment-box{
+    width: 100%;
+    line-height: 2em;
+    padding-left: 1.25rem;
+    box-shadow: none !important;
+    border: 1px solid #A5A3A9;
+    border-radius: 1rem;
+}
+
+.comment-box:focus{
+    line-height: 2em;
+    padding-left: 1.25rem;
+    outline: none !important;
+    border: 1px solid #4D77FF;
+    border-radius: 1rem;
+}
+
+.comment-list-container{
+    margin-top: 1rem;
+}
+
+.user-name-container{
+    margin: 0.5rem 0 0 1rem;
+}
+
+.user-comment-container{
+    margin: 0 0 0.5rem 1rem;
+}
