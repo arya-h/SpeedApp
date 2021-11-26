@@ -10,6 +10,7 @@ import { startDeletingComment } from "../../actions/comment";
 import "../../style/comments.css";
 
 import { DotsButton } from "../ui/DotsButton";
+import moment from "moment";
 
 export const CommentCard = ({ props }) => {
   const comment = props?.comment;
@@ -20,20 +21,6 @@ export const CommentCard = ({ props }) => {
     dispatch(startDeletingComment(ideaId, commentId));
   };
 
-  const unixTimestamp = comment.timestamp;
-  const dateObject = new Date(unixTimestamp);
-
-  const gradients = [
-    ["#add3ef", "#cfd6f4"],
-    ["#f88080", "#93cf90"],
-  ];
-
-  const dateString =
-    dateObject.getDate() +
-    "/" +
-    (dateObject.getMonth() + 1) +
-    "/" +
-    dateObject.getUTCFullYear();
 
   return (
     <div
@@ -54,9 +41,7 @@ export const CommentCard = ({ props }) => {
           <Col>
             <div className="user-name-container">
               <h6 style={{marginBottom: "-0.25rem"}}>{comment.user}</h6>
-              <span className="comment-timestamp">{dateObject.toLocaleString("en-ES", {
-                  timeZone: "Europe/Madrid",
-                })}{" "}</span>
+              <span className="comment-timestamp">{moment( comment.timestamp ).format('MMM Do YYYY, h:mm:ss')}</span>
             </div>
           </Col>
 
