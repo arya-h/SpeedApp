@@ -184,7 +184,7 @@ export const IdeaCard = ({ idea }) => {
 
 
 
-  const removeUnderline = { textDecoration: "none" };
+  const btn = { textDecoration: "none", cursor: "pointer" };
 
   const unixTimestamp = idea.timestamp;
   const dateObject = new Date(unixTimestamp);
@@ -252,7 +252,7 @@ export const IdeaCard = ({ idea }) => {
 
             {/* likes button */}
             <Col xs={1} className="idea-button">
-              <a className="card-link" style={removeUnderline} onClick={()=>{handleLikeIdea(idea)}} >
+              <a className="card-link" style={btn} onClick={()=>{handleLikeIdea(idea)}} >
                 <i className="fas fa-thumbs-up"></i> {updatedLikes}
                 
               </a>
@@ -262,7 +262,7 @@ export const IdeaCard = ({ idea }) => {
             <Col xs={1} className="idea-button">
               <a
                 className="card-link"
-                style={removeUnderline}
+                style={btn}
                 onClick={onClickComments}
               >
                 <i className="far fa-comments"></i> {idea.comments?.length}
