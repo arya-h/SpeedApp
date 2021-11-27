@@ -52,7 +52,7 @@ export const AddIdeaScreen = () => {
                 className="btn btn-primary mt-3"
                 onClick={() => {
                   dispatch(addNewIdea({ title: title, content: content, comments: [] }));
-                  history.push("/");
+                  // history.push("/");
                 }}
               >
                 Add Idea

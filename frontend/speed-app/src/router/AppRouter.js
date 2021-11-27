@@ -5,16 +5,34 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import { AuthRouter } from "./AuthRouter";
 import { IdeasRouter } from "./IdeasRouter";
 import { PublicRoute } from "./PublicRoute";
+import { useDispatch } from "react-redux";
+import { login } from "../actions/auth";
 
 
 export const AppRouter = () => {
 
-    const user = localStorage.getItem('user');
-    const isLoggedIn = user !== '';
+    const dispatch = useDispatch()
+    const [isLoggedIn, setIsLoggedIn] = useState( false );
+
+    const auth = getAuth();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user?.uid) {
+                dispatch( login( user.uid, user.displayName ))
+                setIsLoggedIn( true );
+                localStorage.setItem('user', user.displayName);
+            } else {
+                setIsLoggedIn( false );
+                localStorage.removeItem('user');
+            }
+          });
+    }, [ dispatch ])
 
     return (
         <Router>
@@ -25,16 +43,16 @@ export const AppRouter = () => {
                     <PublicRoute 
                         path="/auth"
                         component={ AuthRouter }
-                        // isAuthenticated={ isLoggedIn }
+                        isAuthenticated={ isLoggedIn }
                     />
 
                     <Route 
-                        path="/"
+                        path="/ideas"
                         component={ IdeasRouter }
                     />
 
                     {/* Redirect for unexpected urls */}
-                    <Redirect to="/"/>
+                    <Redirect to="/ideas"/>
 
                 </Switch>
             </div>

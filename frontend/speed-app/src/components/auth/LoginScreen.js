@@ -27,8 +27,7 @@ export const LoginScreen = () => {
 
     const handleGoogleLogin = () => {
 
-        // TODO
-        // dispatch( startGoogleLogin() );
+        dispatch( startGoogleLogin() );
 
     }
 

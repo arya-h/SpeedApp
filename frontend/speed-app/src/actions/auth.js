@@ -1,8 +1,13 @@
 import Swal from 'sweetalert2';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile  } from "firebase/auth";
+import { getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    signOut, 
+    updateProfile, 
+    signInWithPopup, 
+    GoogleAuthProvider   } from "firebase/auth";
 
 import { types } from "../types/types"
-import { connectFirestoreEmulator } from '@firebase/firestore';
 
 export const startLoginEmailPassword = ( email, password ) => {
     return ( dispatch ) => {
@@ -52,19 +57,21 @@ export const startRegisterWithEmailPasswordName = ( email, password, name ) => {
     }
 }
 
-// export const startGoogleLogin = () => {
-//     return ( dispatch ) => {
+export const startGoogleLogin = () => {
+    return ( dispatch ) => {
 
-//         firebase.auth().signInWithPopup( googleAuthProvider )
-//             .then( ({ user }) => {
+        const provider = new GoogleAuthProvider();
+        const auth = getAuth();
+        signInWithPopup( auth, provider )
+            .then( ({ user }) => {
 
-//                 dispatch(
-//                     login( user.uid , user.displayName)
-//                 )
+                dispatch(
+                    login( user.uid , user.displayName)
+                )
                 
-//             })
-//     }
-// }
+            })
+    }
+}
 
 export const login = ( uid, displayName ) => {
 

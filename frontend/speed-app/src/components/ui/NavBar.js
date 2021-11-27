@@ -1,10 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { startLogout } from "../../actions/auth";
 import logo from "../../assets/SpeedApp-Icon.png";
 import { types } from "../../types/types";
 
 const NavBar = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+  const history = useHistory()
+
+  const handleLogout = () => {
+    dispatch( startLogout() );
+  }
+  const handleLogin = () => {
+    history.push('/auth/login')
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -37,6 +47,22 @@ const NavBar = () => {
                             <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
           </ul>
+          <button 
+                    className="btn"
+                    onClick={ handleLogout }
+                >
+                    
+                    Logout
+          </button>
+
+          <button 
+                    className="btn"
+                    onClick={ handleLogin }
+                >
+                    
+                    Login
+          </button>
+
           <form className="d-flex">
             <input
               value={filter}

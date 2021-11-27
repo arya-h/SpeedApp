@@ -108,16 +108,16 @@ export const IdeaCard = ({ idea }) => {
         <DotsButton  
                     items = { [
                         { 
-                            id: idea.id,
+                            id: 1,
                             action: DropDownButton( { icon:BsFillTrashFill(),  title:"Delete"} ), 
                             handler: handleDelete,
                             args: { id: idea.id  } 
                         },
                         {
-                          id: idea.id,
+                          id: 2,
                           action: DropDownButton( { icon:BsFillPencilFill(),  title:"Update"} ), 
                           handler: handleUpdate,
-                          args: { path:`/edit/${idea.id}` } 
+                          args: { path:`/ideas/edit/${idea.id}` } 
                         }
                     ]}
                 />
