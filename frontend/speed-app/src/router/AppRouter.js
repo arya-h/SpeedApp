@@ -1,55 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
-import { useDispatch } from 'react-redux'
 
-import { IdeasScreen } from "../components/ideas/IdeasScreen";
-import { startLoadingIdeas } from "../actions/idea";
-import { IdeaEditScreen } from "../components/ideas/IdeaEditScreen";
-import { AddIdeaScreen } from "../components/ideas/AddIdeaScreen";
-import NavBar from "../components/ui/NavBar";
+import { AuthRouter } from "./AuthRouter";
+import { IdeasRouter } from "./IdeasRouter";
+import { PublicRoute } from "./PublicRoute";
 
 
 export const AppRouter = () => {
 
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        
-        // User authentication
-        
-        // Load ideas
-        console.log('Loading ideas...')
-        dispatch( startLoadingIdeas() );
-
-    }, [ dispatch ])
+    const user = localStorage.getItem('user');
+    const isLoggedIn = user !== '';
 
     return (
         <Router>
             <div>
-            <NavBar />
                 <Switch>
 
-                    {/* TODO: Route for authentication screen */}
+                    {/* Routes for authentication screen */}
+                    <PublicRoute 
+                        path="/auth"
+                        component={ AuthRouter }
+                        // isAuthenticated={ isLoggedIn }
+                    />
 
-                    {/* Route to edit idea screen */}
-                    <Route
-                        path="/edit/:ideaId"
-                        component={ IdeaEditScreen }
-                    />
-                    {/* Route to add idea*/}
-                    <Route
-                        path="/add"
-                        component={ AddIdeaScreen }
-                    />
-                    {/* Route to main screen */}
-                    <Route
+                    <Route 
                         path="/"
-                        component={ IdeasScreen }
+                        component={ IdeasRouter }
                     />
 
                     {/* Redirect for unexpected urls */}

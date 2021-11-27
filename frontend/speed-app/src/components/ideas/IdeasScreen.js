@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { startLoadingIdeas } from "../../actions/idea";
 import { IdeaList } from "./IdeaList";
 
 export const IdeasScreen = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+        
+    // User authentication
+    
+    // Load ideas
+    Swal.fire({
+      title: 'Loading ideas',
+      html: 'Please, wait!',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading()
+        dispatch( startLoadingIdeas() );
+      },
+      timer: 2000,
+      timerProgressBar: true
+    })
+    
+
+}, [ dispatch ])
 
   return (
     <div>

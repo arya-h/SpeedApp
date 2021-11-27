@@ -12,4 +12,8 @@ export const types = {
 
     //Filter
     updateFilter: '[Filter] Update filter',
+
+    // Authentication
+    login: '[Auth] Login',
+    logout: '[Auth] Logout'
 }
