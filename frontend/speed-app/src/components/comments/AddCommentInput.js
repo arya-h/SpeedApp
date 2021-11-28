@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { addNewComment } from '../../actions/comment';
 
@@ -9,13 +9,14 @@ export const AddCommentInput = ({ideaObject}) => {
     let [content, setContent] = useState("");
     const dispatch = useDispatch();
     const history = useHistory();
+    const user = useSelector(state => state.auth)
 
     const onHitEnter = (event) => {
         // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
         if (event.key === 'Enter') {
             event.preventDefault();
             event.stopPropagation();
-            dispatch(addNewComment(ideaObject, content));
+            dispatch(addNewComment(ideaObject, content, user));
             setContent("")
             history.push("/");
         }

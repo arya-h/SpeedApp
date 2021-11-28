@@ -8,11 +8,11 @@ import { types } from '../types/types';
 //     return async () => { await addComment(idea, comment); }
 // }
 
-export const addNewComment = (idea, content) => {
+export const addNewComment = (idea, content, user) => {
     return async (dispatch) => {
-
+        
         let richComment = {
-            user:"Anonymous user",
+            user,
             content: content,
             timestamp: Date.now(),
         }

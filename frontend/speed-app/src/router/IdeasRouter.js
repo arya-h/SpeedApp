@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { AddIdeaScreen } from '../components/ideas/AddIdeaScreen'
 import { IdeaEditScreen } from '../components/ideas/IdeaEditScreen'

@@ -1,7 +1,6 @@
 import React from "react";
 
 import Button from "react-bootstrap/Button";
-import { Gradient } from "react-gradient";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
@@ -215,8 +214,8 @@ export const IdeaCard = ({ idea }) => {
       </div>*/}
 
 
-      {/**/}<UserDateDisplay 
-        userName = {idea.user}
+      <UserDateDisplay 
+        user = {idea.user}
         date = {idea.timestamp}
       />
 

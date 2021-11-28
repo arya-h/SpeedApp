@@ -39,7 +39,7 @@ export const CommentCard = ({ props }) => {
         <Row>
           <Col>
             <div className="user-name-container">
-              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user}</h6>
+              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user.name}</h6>
               <span className="comment-timestamp">{moment( comment.timestamp ).format('MMM Do YYYY, h:mm:ss')}</span>
             </div>
           </Col>

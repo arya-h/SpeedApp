@@ -68,12 +68,10 @@ const NavBar = () => {
           </button>
 
           <div className="pe-5">
-          <Link to="/add">
-              <a href="#" className="card-link text-white fa-2x" style={removeUnderline}>
-              <i className="far fa-plus-square"></i>
-              </a>
-              </Link>
-            </div>
+            <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
+                <i className="far fa-plus-square"></i>
+            </Link>
+          </div>
             
           <form className="d-flex">
             <input

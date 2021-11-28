@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addNewIdea } from "../../actions/idea";
+
 export const AddIdeaScreen = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  const user = useSelector(state => state.auth)
 
   return (
     <div>
@@ -50,9 +53,10 @@ export const AddIdeaScreen = () => {
             <div className="col-6 text-end">
               <button
                 className="btn btn-primary mt-3"
-                onClick={() => {
-                  dispatch(addNewIdea({ title: title, content: content, comments: [] }));
-                  // history.push("/");
+                onClick={( e ) => {
+                  e.preventDefault();
+                  dispatch(addNewIdea({ title: title, content: content, comments: [], user }));
+                  history.push("/");
                 }}
               >
                 Add Idea
