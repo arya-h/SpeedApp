@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Gradient } from "react-gradient";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { BsFillTrashFill } from "react-icons/bs";
