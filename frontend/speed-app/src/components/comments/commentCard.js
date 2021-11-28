@@ -1,8 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillExclamationOctagonFill } from "react-icons/bs";
 import { DropDownButton } from "../ui/DropDownButton";
 import { startDeletingComment } from "../../actions/comment";
 
@@ -15,6 +15,7 @@ export const CommentCard = ({ props }) => {
   const comment = props?.comment;
   const idea = props?.idea;
   const dispatch = useDispatch();
+  const user = useSelector(state => state.auth)
 
   const handleDeleteComment = (ideaId, commentId) => {
     dispatch(startDeletingComment(ideaId, commentId));
@@ -79,7 +80,9 @@ export const CommentCard = ({ props }) => {
           </Col>
 
           <Col>
-            <DotsButton
+          { (user.uid === comment.user.uid) ?
+          // Comment from the user
+              <DotsButton
               items={[
                 {
                   id: comment.id,
@@ -92,6 +95,20 @@ export const CommentCard = ({ props }) => {
                 },
               ]}
             />
+            :
+            // Comment from other user
+            <DotsButton  
+                      items = { [
+                          { 
+                              id: 1,
+                              action: DropDownButton( { icon:BsFillExclamationOctagonFill(),  title:"Report"} ), 
+                              handler: () => {},
+                              args: {  } 
+                          }
+                      ]}
+                  />
+          }
+
           </Col>
         </Row>
       </Card>

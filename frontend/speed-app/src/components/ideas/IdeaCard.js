@@ -25,15 +25,17 @@ import { db } from "../../firebase/firebase-config";
 import "../../style/ideas.css";
 
 import { likeIdeaAction, startDeleting } from "../../actions/idea";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { likeIdea } from "../../helpers/likeIdea";
 
 import { DotsButton } from "../ui/DotsButton";
 import { DropDownButton } from "../ui/DropDownButton";
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillPencilFill, BsFillExclamationOctagonFill } from "react-icons/bs";
 import { UserDateDisplay } from "../ui/UserDateDisplay";
 
 export const IdeaCard = ({ idea }) => {
+
+  const user = useSelector(state => state.auth)
 
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
@@ -43,6 +45,7 @@ export const IdeaCard = ({ idea }) => {
   const [disableLike, setDisableLike] = useState(false);
   // const [showComments, setShowComments] = useState('none')
   const history = useHistory();
+  
 
   const dispatch = useDispatch();
 
@@ -310,7 +313,9 @@ export const IdeaCard = ({ idea }) => {
 
         </div> {/*  //Card body */}
 
-        <DotsButton  
+        { (user.uid === idea.user.uid) ?
+        // Idea from the user
+          <DotsButton  
                     items = { [
                         { 
                             id: 1,
@@ -326,6 +331,20 @@ export const IdeaCard = ({ idea }) => {
                         }
                     ]}
                 />
+          :
+          // Idea from other user
+          <DotsButton  
+                    items = { [
+                        { 
+                            id: 1,
+                            action: DropDownButton( { icon:BsFillExclamationOctagonFill(),  title:"Report"} ), 
+                            handler: () => {},
+                            args: {  } 
+                        }
+                    ]}
+                />
+        }
+          
 
     </div> 
   );
