@@ -1,9 +1,10 @@
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/firebase-config";
 
 import { addIdea } from "../helpers/addIdea";
 import { loadIdeas } from "../helpers/loadIdeas";
 import { updateIdea } from "../helpers/updateIdea";
+import { likeIdea } from "../helpers/likeIdea";
 import { types } from "../types/types";
 
 export const addNewIdea = (idea) => {
@@ -11,8 +12,9 @@ export const addNewIdea = (idea) => {
 
         const improvedIdea = {
             ...idea,
-            creationDate: Date.now(),
+            timestamp: Date.now(),
             comments: [],
+            likes: 0,
             user:'Annonymous user'
         }
 
@@ -43,6 +45,15 @@ export const setIdeas = (ideas) => ({
 export const updateIdeaAction = ( idea ) => {
     return async () => { await updateIdea(idea); }
 }
+
+//like idea
+export const likeIdeaAction = (idea) =>{
+    
+    return async ()=>{ await likeIdea(idea);}
+
+}
+
+
 
 // Delete idea
 export const startDeleting = ( id ) => {

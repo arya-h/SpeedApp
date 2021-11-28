@@ -1,6 +1,5 @@
 .col-1.idea-button{
     max-width: 15vh;
-    
 }
 
 .popover-row{
@@ -18,6 +17,15 @@
     bottom: 20%;
     margin: auto;
     
+}
+
+.idea-timestamp{
+    /* font-size: small; */
+    font-style: italic;
+    text-align: center;
+    width: 69%;
+    border-radius: 100px;
+    margin-top: 1%;
 }
 
 .standard-card{

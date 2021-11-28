@@ -41,13 +41,13 @@ export const IdeasScreen = () => {
             <h1 className="my-3">Ideas feed</h1>
           </div>
           <div className="col-6 text-end">
-            <Link to="/add">
+            {/*<Link to="/add">
               <button
                 className="btn btn-primary mt-3"
               >
                 Add New Idea
               </button>
-            </Link>
+            </Link>*/}
           </div>
         </div>
         <IdeaList />

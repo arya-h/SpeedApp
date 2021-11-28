@@ -12,9 +12,9 @@ export const addNewComment = (idea, content) => {
     return async (dispatch) => {
 
         let richComment = {
-            user:"Annonymous user",
+            user:"Anonymous user",
             content: content,
-            creationDate: Date.now(),
+            timestamp: Date.now(),
         }
 
         const docRef = await addDoc(collection(db, `ideas/${ idea.id }/comments`), richComment);
@@ -40,7 +40,7 @@ export const createComment = ( newIdea ) => {
 }
 
 // Delete comment
-export const startDeletingComment = (ideaId, commentId) => {
+export const startDeletingComment = ({ ideaId, commentId }) => {
     return async ( dispatch ) => {
 
         await deleteDoc( doc(db, `ideas/${ ideaId }/comments`, commentId) );

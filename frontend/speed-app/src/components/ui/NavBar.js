@@ -3,6 +3,8 @@ import { useHistory } from "react-router";
 import { startLogout } from "../../actions/auth";
 import logo from "../../assets/SpeedApp-Icon.png";
 import { types } from "../../types/types";
+import { Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const filter = useSelector((state) => state.filter);
@@ -15,6 +17,8 @@ const NavBar = () => {
   const handleLogin = () => {
     history.push('/auth/login')
   }
+
+  const removeUnderline = { textDecoration: "none" };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -63,6 +67,14 @@ const NavBar = () => {
                     Login
           </button>
 
+          <div className="pe-5">
+          <Link to="/add">
+              <a href="#" className="card-link text-white fa-2x" style={removeUnderline}>
+              <i className="far fa-plus-square"></i>
+              </a>
+              </Link>
+            </div>
+            
           <form className="d-flex">
             <input
               value={filter}
@@ -77,9 +89,6 @@ const NavBar = () => {
                 })
               }
             ></input>
-            <button className="btn btn-outline-light" type="submit">
-              Search
-            </button>
           </form>
         </div>
       </div>

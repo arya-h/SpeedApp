@@ -2,6 +2,12 @@
     margin-top: 0.75rem;
 }
 
+.comment-timestamp{
+    font-size: small;
+    font-style: italic;
+    text-align: center;
+}
+
 .profile-pic-container{
     margin: 0.25rem 0.5rem 0 0;
 }
