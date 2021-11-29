@@ -93,17 +93,11 @@ export const AddIdeaScreen = () => {
 
     const columns = [
       { field: "name", headerName: "Name", width: 300 },
-      { field: "ssizeize", headerName: "Size", width: 130 },
+      { field: "size", headerName: "Size", width: 190 },
       { field: "extension", headerName: "extension", width: 130 },
     ];
 
-    console.log(props);
-   
-    // return(<></>)
-
-    let res = [];
-    res.push({id: Date.now(), name:"ara", extension:".pdf", size:323})
-    res.push({id: Date.now()+1232, name:"sssssara", extension:".pdf", size:323})
+    
     if (props.rows.length <=3) {
       return(
       // <div style={{ height: 400, width: "100%" }}>
