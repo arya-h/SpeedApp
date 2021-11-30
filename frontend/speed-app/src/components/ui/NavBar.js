@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { startLogout } from "../../actions/auth";
 import logo from "../../assets/SpeedApp-Icon.png";
 import { types } from "../../types/types";
 import { Col } from "react-bootstrap";
@@ -7,6 +9,15 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+  const history = useHistory()
+
+  const handleLogout = () => {
+    dispatch( startLogout() );
+  }
+  const handleLogin = () => {
+    history.push('/auth/login')
+  }
+
   const removeUnderline = { textDecoration: "none" };
 
   return (
@@ -40,13 +51,28 @@ const NavBar = () => {
                             <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
           </ul>
+          <button 
+                    className="btn"
+                    onClick={ handleLogout }
+                >
+                    
+                    Logout
+          </button>
+
+          <button 
+                    className="btn"
+                    onClick={ handleLogin }
+                >
+                    
+                    Login
+          </button>
+
           <div className="pe-5">
-          <Link to="/add">
-              <a href="#" className="card-link text-white fa-2x" style={removeUnderline}>
-              <i className="far fa-plus-square"></i>
-              </a>
-              </Link>
-            </div>
+            <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
+                <i className="far fa-plus-square"></i>
+            </Link>
+          </div>
+            
           <form className="d-flex">
             <input
               value={filter}

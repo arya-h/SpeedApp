@@ -1,7 +1,6 @@
 import React from "react";
 
 import Button from "react-bootstrap/Button";
-import { Gradient } from "react-gradient";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
@@ -26,15 +25,17 @@ import { db } from "../../firebase/firebase-config";
 import "../../style/ideas.css";
 
 import { likeIdeaAction, startDeleting } from "../../actions/idea";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { likeIdea } from "../../helpers/likeIdea";
 
 import { DotsButton } from "../ui/DotsButton";
 import { DropDownButton } from "../ui/DropDownButton";
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillPencilFill, BsFillExclamationOctagonFill } from "react-icons/bs";
 import { UserDateDisplay } from "../ui/UserDateDisplay";
 
 export const IdeaCard = ({ idea }) => {
+
+  const user = useSelector(state => state.auth)
 
   const [showPopover, setShowPopover] = useState(false); //delete popover state
   const [showErrorDelete, setShowErrorDelete] = useState(false); //show error in case delete has exceptions
@@ -44,6 +45,7 @@ export const IdeaCard = ({ idea }) => {
   const [disableLike, setDisableLike] = useState(false);
   // const [showComments, setShowComments] = useState('none')
   const history = useHistory();
+  
 
   const dispatch = useDispatch();
 
@@ -215,8 +217,8 @@ export const IdeaCard = ({ idea }) => {
       </div>*/}
 
 
-      {/**/}<UserDateDisplay 
-        userName = {idea.user}
+      <UserDateDisplay 
+        user = {idea.user}
         date = {idea.timestamp}
       />
 
@@ -311,22 +313,38 @@ export const IdeaCard = ({ idea }) => {
 
         </div> {/*  //Card body */}
 
-        <DotsButton  
+        { (user.uid === idea.user.uid) ?
+        // Idea from the user
+          <DotsButton  
                     items = { [
                         { 
-                            id: idea.id,
+                            id: 1,
                             action: DropDownButton( { icon:BsFillTrashFill(),  title:"Delete"} ), 
                             handler: handleDelete,
                             args: { id: idea.id  } 
                         },
                         {
-                          id: idea.id,
+                          id: 2,
                           action: DropDownButton( { icon:BsFillPencilFill(),  title:"Update"} ), 
                           handler: handleUpdate,
-                          args: { path:`/edit/${idea.id}` } 
+                          args: { path:`/ideas/edit/${idea.id}` } 
                         }
                     ]}
                 />
+          :
+          // Idea from other user
+          <DotsButton  
+                    items = { [
+                        { 
+                            id: 1,
+                            action: DropDownButton( { icon:BsFillExclamationOctagonFill(),  title:"Report"} ), 
+                            handler: () => {},
+                            args: {  } 
+                        }
+                    ]}
+                />
+        }
+          
 
     </div> 
   );

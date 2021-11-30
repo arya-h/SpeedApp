@@ -1,9 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Gradient } from "react-gradient";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill, BsFillExclamationOctagonFill } from "react-icons/bs";
 import { DropDownButton } from "../ui/DropDownButton";
 import { startDeletingComment } from "../../actions/comment";
 
@@ -16,6 +15,7 @@ export const CommentCard = ({ props }) => {
   const comment = props?.comment;
   const idea = props?.idea;
   const dispatch = useDispatch();
+  const user = useSelector(state => state.auth)
 
   const handleDeleteComment = (ideaId, commentId) => {
     dispatch(startDeletingComment(ideaId, commentId));
@@ -40,7 +40,7 @@ export const CommentCard = ({ props }) => {
         <Row>
           <Col>
             <div className="user-name-container">
-              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user}</h6>
+              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user.name}</h6>
               <span className="comment-timestamp">{moment( comment.timestamp ).format('MMM Do YYYY, h:mm:ss')}</span>
             </div>
           </Col>
@@ -80,7 +80,9 @@ export const CommentCard = ({ props }) => {
           </Col>
 
           <Col>
-            <DotsButton
+          { (user.uid === comment.user.uid) ?
+          // Comment from the user
+              <DotsButton
               items={[
                 {
                   id: comment.id,
@@ -93,6 +95,20 @@ export const CommentCard = ({ props }) => {
                 },
               ]}
             />
+            :
+            // Comment from other user
+            <DotsButton  
+                      items = { [
+                          { 
+                              id: 1,
+                              action: DropDownButton( { icon:BsFillExclamationOctagonFill(),  title:"Report"} ), 
+                              handler: () => {},
+                              args: {  } 
+                          }
+                      ]}
+                  />
+          }
+
           </Col>
         </Row>
       </Card>

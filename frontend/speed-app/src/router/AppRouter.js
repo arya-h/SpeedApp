@@ -1,59 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-import { IdeasScreen } from "../components/ideas/IdeasScreen";
-import { startLoadingIdeas } from "../actions/idea";
-import { IdeaEditScreen } from "../components/ideas/IdeaEditScreen";
-import { AddIdeaScreen } from "../components/ideas/AddIdeaScreen";
-import NavBar from "../components/ui/NavBar";
+import { AuthRouter } from "./AuthRouter";
+import { IdeasRouter } from "./IdeasRouter";
+import { PublicRoute } from "./PublicRoute";
+import { useDispatch } from "react-redux";
+import { login } from "../actions/auth";
 
 
 export const AppRouter = () => {
 
-    const dispatch = useDispatch();
-    
-    useEffect(() => {
-        
-        // User authentication
-        
-        // Load ideas
-        console.log('Loading ideas...')
-        dispatch( startLoadingIdeas() );
+    const dispatch = useDispatch()
+    const [isLoggedIn, setIsLoggedIn] = useState( false );
 
+    const auth = getAuth();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user?.uid) {
+                dispatch( login( user.uid, user.displayName ))
+                setIsLoggedIn( true );
+                localStorage.setItem('user', user.displayName);
+            } else {
+                setIsLoggedIn( false );
+                localStorage.removeItem('user');
+            }
+          });
     }, [ dispatch ])
 
     return (
         <Router>
             <div>
-            <NavBar />
                 <Switch>
 
-                    {/* TODO: Route for authentication screen */}
+                    {/* Routes for authentication screen */}
+                    <PublicRoute 
+                        path="/auth"
+                        component={ AuthRouter }
+                        isAuthenticated={ isLoggedIn }
+                    />
 
-                    {/* Route to edit idea screen */}
-                    <Route
-                        path="/edit/:ideaId"
-                        component={ IdeaEditScreen }
-                    />
-                    {/* Route to add idea*/}
-                    <Route
-                        path="/add"
-                        component={ AddIdeaScreen }
-                    />
-                    {/* Route to main screen */}
-                    <Route
-                        path="/"
-                        component={ IdeasScreen }
+                    <Route 
+                        path="/ideas"
+                        component={ IdeasRouter }
                     />
 
                     {/* Redirect for unexpected urls */}
-                    <Redirect to="/"/>
+                    <Redirect to="/ideas"/>
 
                 </Switch>
             </div>
