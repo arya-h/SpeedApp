@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addNewIdea } from "../../actions/idea";
-import { Link } from "react-router-dom";
 
 export const CreateIdeaModal = () => {
   const dispatch = useDispatch();
@@ -12,18 +11,17 @@ export const CreateIdeaModal = () => {
 
   const user = useSelector(state => state.auth)
 
+  const handleOnClose = useCallback(() => history.push('ideas/feed'), [history]);
+
   return (
 <div class="modal fade" id="createIdeaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create Idea</h5>
-        <Link to="/ideas/feed" className="card-link text-white" data-toggle="modal" data-target="#createIdeaModal">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white" id="exampleModalLongTitle">Create Idea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={() => {setTitle(""); setContent(""); handleOnClose()}}>
           <span aria-hidden="true">&times;</span>
         </button>
-            </Link>
-        
       </div>
       <div class="modal-body">
       <div className="container-fluid px-5">
@@ -63,7 +61,7 @@ export const CreateIdeaModal = () => {
       </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => {setTitle(""); setContent(""); handleOnClose()}}>Close</button>
         <button
                 className="btn btn-primary "
                 onClick={( e ) => {
