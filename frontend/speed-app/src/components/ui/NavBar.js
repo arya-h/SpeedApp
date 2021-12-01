@@ -5,6 +5,7 @@ import logo from "../../assets/SpeedApp-Icon.png";
 import { types } from "../../types/types";
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import {CreateIdeaModal} from "../ideas/CreateIdeaModal"
 
 const NavBar = () => {
   const filter = useSelector((state) => state.filter);
@@ -68,10 +69,11 @@ const NavBar = () => {
           </button>
 
           <div className="pe-5">
-            <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
+            <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline} data-toggle="modal" data-target="#createIdeaModal">
                 <i className="far fa-plus-square"></i>
             </Link>
           </div>
+          <CreateIdeaModal/>
             
           <form className="d-flex">
             <input

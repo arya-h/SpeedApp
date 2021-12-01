@@ -7,6 +7,7 @@ import NavBar from '../components/ui/NavBar'
 import { PrivateRoute } from './PrivateRoute'
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux'
+import { CreateIdeaModal } from '../components/ideas/CreateIdeaModal'
 
 export const IdeasRouter = () => {
 
@@ -36,7 +37,7 @@ export const IdeasRouter = () => {
                     {/* Route to add idea*/}
                     <PrivateRoute
                         path="/ideas/add"
-                        component={ AddIdeaScreen } 
+                        component={ IdeasScreen } 
                         isAuthenticated={ isLoggedIn }
                     />   
 
