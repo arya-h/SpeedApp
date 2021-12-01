@@ -34,11 +34,10 @@ export const IdeasScreen = () => {
 
   return (
     <div>
-      <div className="container-fluid px-5">
-        {/* TODO: Sidebar */}
+      <div className="container-fluid px-5" style={{position: "absolute", marginLeft: "20rem", width: "calc(100vw - 20rem)"}}>
         <div className="row">
           <div className="col-6">
-            <h1 className="my-3">Ideas feed</h1>
+            <h1>Ideas feed</h1>
           </div>
           <div className="col-6 text-end">
             {/*<Link to="/add">

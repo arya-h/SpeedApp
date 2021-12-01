@@ -4,6 +4,7 @@ import { AddIdeaScreen } from '../components/ideas/AddIdeaScreen'
 import { IdeaEditScreen } from '../components/ideas/IdeaEditScreen'
 import { IdeasScreen } from '../components/ideas/IdeasScreen'
 import NavBar from '../components/ui/NavBar'
+import Sidebar from '../components/ui/Sidebar'
 import { PrivateRoute } from './PrivateRoute'
 import { Redirect, Route, Switch } from 'react-router';
 import { useSelector } from 'react-redux'
@@ -17,6 +18,8 @@ export const IdeasRouter = () => {
         <div>
             {/* NAVBAR */}
             <NavBar />
+
+            <Sidebar />
 
             <div>
                 <Switch>
