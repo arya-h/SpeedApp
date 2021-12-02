@@ -1,11 +1,37 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import UserProfileInfo from './UserProfileInfo';
+import { types } from '../../types/types';
 import { Link } from 'react-router-dom';
+import Swal from "sweetalert2";
+import { startLoadingIdeas } from '../../actions/idea';
 
 const Sidebar = () => {
 
-    const user = useSelector(state => state.auth)
+    const { ideas } = useSelector(state => state.ideas);
+    const user = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+
+    const filterUserIdeas = (userId) => {
+        dispatch({
+            type: types.filterUserIdeas,
+            payload: userId,
+        })
+    }
+
+    const reLoadIdeas = () => {
+        Swal.fire({
+            title: 'Loading ideas',
+            html: 'Please, wait!',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+                dispatch( startLoadingIdeas() );
+            },
+            timer: 2000,
+            timerProgressBar: true
+        })
+    }
 
     return (
         <div class="wrapper" style={sideBarStyle}>
@@ -13,9 +39,9 @@ const Sidebar = () => {
                 <UserProfileInfo user={user}/>
                 <div style={userMenu}>
                     <Link to="/ideas/feed">
-                        <a>Home</a>
+                        <a onClick={() => reLoadIdeas()}>Home</a>
                     </Link>
-                    <a onClick={() => alert('My Ideas')}>My Ideas</a>
+                    <a onClick={() => filterUserIdeas(user.uid)}>My Ideas</a>
                     <a onClick={() => alert('Liked Ideas')}>Liked Ideas</a>
                 </div>
                 <div>
