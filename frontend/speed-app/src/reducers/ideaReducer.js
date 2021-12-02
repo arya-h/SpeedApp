@@ -78,7 +78,6 @@ export const ideaReducer = (state = initialIdeas, action) => {
       };
 
     case types.likeComment:
-      console.log(action.payload);
       let idea = state.ideas.find((item) => item.id === action.payload.ideaId);
 
       idea.comments = idea.comments.map((comment) => {
@@ -88,7 +87,7 @@ export const ideaReducer = (state = initialIdeas, action) => {
         comment.likes += 1;
         return comment;
       });
-      console.log(idea.comments);
+
       return {
         ...state,
         ideas: [
