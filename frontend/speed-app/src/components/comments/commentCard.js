@@ -40,38 +40,10 @@ export const CommentCard = ({ props }) => {
         <Row>
           <Col>
             <div className="user-name-container">
-              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user.name}</h6>
+              <h6 style={{marginBottom: "-0.5rem", fontWeight:"600"}}>{comment.user.name}</h6>
               <span className="comment-timestamp">{moment( comment.timestamp ).format('MMM Do YYYY, h:mm:ss')}</span>
             </div>
           </Col>
-
-         {/* <Col
-            xs={{ span: "2", offset: "3" }}
-            className="comment-timestamp"
-            style={{ alignContent: "center", borderWidth: "20%" }}
-          >
-            <Gradient
-              gradients={gradients} // required
-              property="background"
-              duration={3000}
-              angle="45deg"
-              style={{ borderRadius: "20px" }}
-            >
-              <span
-                className="comment-timestamp" style={{
-                  margin: "15%",
-                  marginTop:"5%",
-                  borderRadius: "20px",
-                }}
-              >
-                {dateObject.toLocaleString("en-ES", {
-                  timeZone: "Europe/Vienna",
-                })}{" "}
-              </span>
-            </Gradient>
-          </Col>
-
-           comment timestamp */}
         </Row>
 
         <Row>
