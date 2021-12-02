@@ -15,7 +15,7 @@ export const IdeasRouter = () => {
     const isLoggedIn = uid !== undefined;
 
     return (
-        <div>
+        <div id="ideaRouter">
             {/* NAVBAR */}
             <NavBar />
 

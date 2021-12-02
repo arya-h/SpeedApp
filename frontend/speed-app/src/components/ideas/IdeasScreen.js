@@ -34,7 +34,7 @@ export const IdeasScreen = () => {
 
   return (
     <div>
-      <div className="container-fluid px-5" style={{position: "absolute", marginLeft: "20rem", width: "calc(100vw - 20rem)"}}>
+      <div className="container-fluid px-5" style={{position: "absolute", marginLeft: "20rem", width: "calc(100vw - 20rem)", height:"100vh!important", overflowY: "scroll"}}>
         <div className="row d-flex flex-row justify-content-space-between" style={{margin: "2rem 0 1.25rem 0"}}>
           <div className="col-6">
             <h1 style={ideasFeedTitle}>Ideas</h1>

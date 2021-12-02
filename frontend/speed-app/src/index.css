@@ -10,7 +10,12 @@
   --main-font: NunitoSans
 }
 
-.body {
+html, body, #root, #root>div, #root>div>#ideaRouter{
+  height: 100% !important;
+}
+
+body {
   margin: 0;
+  height: 100%;
   font-family: NunitoSans !important;
 }
