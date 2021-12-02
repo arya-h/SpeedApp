@@ -13,7 +13,7 @@ export const IdeaList = () => {
   useEffect(() => {}, [ideas]);
 
   return (
-    <div>
+    <div style={{height:"85%", overflowY:"scroll"}}>
       {ideas.length === 0 ? (
         <h1>There are no ideas yet</h1>
       ) : (

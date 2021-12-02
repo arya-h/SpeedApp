@@ -21,32 +21,31 @@ export const IdeasRouter = () => {
 
             <Sidebar />
 
-            <div>
-                <Switch>
-                    {/* Route to main screen */}
-                    <Route 
-                        path="/ideas/feed"
-                        component={ IdeasScreen }
-                    />
+            <Switch>
+                {/* Route to main screen */}
+                <Route 
+                    path="/ideas/feed"
+                    component={ IdeasScreen }
+                />
 
-                    {/* Route to edit idea screen */}
-                    <PrivateRoute
-                        path="/ideas/edit/:ideaId"
-                        component={ IdeaEditScreen } 
-                        isAuthenticated={ isLoggedIn }
-                    />
+                {/* Route to edit idea screen */}
+                <PrivateRoute
+                    path="/ideas/edit/:ideaId"
+                    component={ IdeaEditScreen } 
+                    isAuthenticated={ isLoggedIn }
+                />
 
-                    {/* Route to add idea*/}
-                    <PrivateRoute
-                        path="/ideas/add"
-                        component={ AddIdeaScreen } 
-                        isAuthenticated={ isLoggedIn }
-                    />   
+                {/* Route to add idea*/}
+                <PrivateRoute
+                    path="/ideas/add"
+                    component={ AddIdeaScreen } 
+                    isAuthenticated={ isLoggedIn }
+                />   
 
-                    <Redirect to ='/ideas/feed'/>
+                <Redirect to ='/ideas/feed'/>
 
-                </Switch> 
-            </div>        
+            </Switch>
+                    
         </div>
     )
 }

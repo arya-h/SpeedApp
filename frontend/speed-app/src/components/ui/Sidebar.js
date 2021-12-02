@@ -66,7 +66,7 @@ const Sidebar = () => {
 const sideBarStyle = {
     position: "absolute",
     height: "100%",
-    width: "20rem",
+    width: "18rem",
     backgroundColor: "#fff",
     fontFamily: "var(--main-font)"
 }

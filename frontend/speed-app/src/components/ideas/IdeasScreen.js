@@ -33,19 +33,17 @@ export const IdeasScreen = () => {
 }, [ dispatch ])
 
   return (
-    <div>
-      <div className="container-fluid px-5" style={{position: "absolute", marginLeft: "20rem", width: "calc(100vw - 20rem)", height:"100vh!important", overflowY: "scroll"}}>
-        <div className="row d-flex flex-row justify-content-space-between" style={{margin: "2rem 0 1.25rem 0"}}>
-          <div className="col-6">
-            <h1 style={ideasFeedTitle}>Ideas</h1>
-          </div>
-          <div className="col-6 text-end" style={{padding: "0.5rem", fontFamily: "NunitoSans"}}>
-              <button className="btn btn-primary">Popular</button>
-              <button className="btn btn-light">Latest</button>
-          </div>
+    <div className="container-fluid px-5" style={{position: "absolute", marginLeft: "18rem", width: "calc(100vw - 20rem)", height:"100vh", overflowY:"hidden"}}>
+      <div className="row d-flex flex-row justify-content-space-between" style={{margin: "2rem 0 1.25rem 0"}}>
+        <div className="col-6">
+          <h1 style={ideasFeedTitle}>Ideas</h1>
         </div>
-        <IdeaList />
+        <div className="col-6 text-end" style={{padding: "0.5rem", fontFamily: "NunitoSans"}}>
+            <button className="btn btn-primary">Popular</button>
+            <button className="btn btn-light">Latest</button>
+        </div>
       </div>
+      <IdeaList />
     </div>
   );
 };

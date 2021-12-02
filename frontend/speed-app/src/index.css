@@ -16,6 +16,5 @@ html, body, #root, #root>div, #root>div>#ideaRouter{
 
 body {
   margin: 0;
-  height: 100%;
   font-family: NunitoSans !important;
 }

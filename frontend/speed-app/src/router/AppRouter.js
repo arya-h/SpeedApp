@@ -36,26 +36,24 @@ export const AppRouter = () => {
 
     return (
         <Router>
-            <div>
-                <Switch>
+            <Switch>
 
-                    {/* Routes for authentication screen */}
-                    <PublicRoute 
-                        path="/auth"
-                        component={ AuthRouter }
-                        isAuthenticated={ isLoggedIn }
-                    />
+                {/* Routes for authentication screen */}
+                <PublicRoute 
+                    path="/auth"
+                    component={ AuthRouter }
+                    isAuthenticated={ isLoggedIn }
+                />
 
-                    <Route 
-                        path="/ideas"
-                        component={ IdeasRouter }
-                    />
+                <Route 
+                    path="/ideas"
+                    component={ IdeasRouter }
+                />
 
-                    {/* Redirect for unexpected urls */}
-                    <Redirect to="/ideas"/>
+                {/* Redirect for unexpected urls */}
+                <Redirect to="/ideas"/>
 
-                </Switch>
-            </div>
+            </Switch>
         </Router>
     )
 }
