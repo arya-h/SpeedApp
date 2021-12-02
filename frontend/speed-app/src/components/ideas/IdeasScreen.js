@@ -35,18 +35,13 @@ export const IdeasScreen = () => {
   return (
     <div>
       <div className="container-fluid px-5" style={{position: "absolute", marginLeft: "20rem", width: "calc(100vw - 20rem)"}}>
-        <div className="row">
+        <div className="row d-flex flex-row justify-content-space-between" style={{margin: "2rem 0 1.25rem 0"}}>
           <div className="col-6">
-            <h1 className="my-3">Ideas feed</h1>
+            <h1 style={ideasFeedTitle}>Ideas</h1>
           </div>
-          <div className="col-6 text-end">
-            {/*<Link to="/add">
-              <button
-                className="btn btn-primary mt-3"
-              >
-                Add New Idea
-              </button>
-            </Link>*/}
+          <div className="col-6 text-end" style={{padding: "0.5rem", fontFamily: "NunitoSans"}}>
+              <button className="btn btn-primary">Popular</button>
+              <button className="btn btn-light">Latest</button>
           </div>
         </div>
         <IdeaList />
@@ -54,3 +49,10 @@ export const IdeasScreen = () => {
     </div>
   );
 };
+
+const ideasFeedTitle = {
+  fontSize: "1.5rem",
+  fontFamily: "NunitoSans",
+  fontWeight: "600",
+  padding: "0.5rem"
+}
