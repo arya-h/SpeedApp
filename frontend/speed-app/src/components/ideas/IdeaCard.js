@@ -108,54 +108,6 @@ export const IdeaCard = ({ idea }) => {
       });
   };
 
-  const gradients = [
-    ["#f8cc9d", "#ffeb9e"],
-    ["#fce5cd", "#25c668"],
-  ];
-
-  //popover to ask user if he's sure about deleting the idea
-  const popover = (
-    <Popover id="popover-basic">
-      <Popover.Header as="h3">Delete idea</Popover.Header>
-      <Popover.Body>
-        <Container fluid>
-          {/* show spinner only if loading */}
-          {loadingDelete ? (
-            <Spinner
-              animation="border"
-              role="status"
-              className="loading-delete-spinner"
-            ></Spinner>
-          ) : (
-            <></>
-          )}
-
-          {/* text row */}
-          <Row className="popover-row">
-            <Col>Are you sure you want to delete this idea?</Col>
-          </Row>
-          {/* buttons row */}
-          <Row className="popover-row">
-            <Col>
-              {/* button will be disabled while deleting */}
-              <Button
-                variant="danger"
-                disabled={loadingDelete}
-                // onClick={() => deleteIdea(idea.id)}
-                onClick={(e) => {
-                  handleDeleteConfirmation(idea.id, e);
-                }}
-              >
-                Yes
-              </Button>
-            </Col>
-            </Row>
-            </Container>
-
-                </Popover.Body>
-            </Popover>
-  )
-
   const handleDelete = async ( { id } ) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -179,17 +131,38 @@ export const IdeaCard = ({ idea }) => {
     })
   } 
 
-
   const handleUpdate = ( { path } ) => {
     history.push( path )
   } 
-
-
 
   const btn = { textDecoration: "none", cursor: "pointer" };
 
   const unixTimestamp = idea.timestamp;
   const dateObject = new Date(unixTimestamp);
+
+  const ideaTitle = {
+    marginLeft: "0.75rem", 
+    fontFamily: "NunitoSans",
+    fontWeight: "600"
+  }
+
+  const ideaContent = {
+    fontFamily: "NunitoSans",
+    marginTop: "0.25rem",
+    fontSize: "1rem"
+  }
+
+  const icon = {
+    fontSize: "1.5rem",
+    color: "#77757F"
+  }
+
+  const numberOf = {
+    fontFamily: "NunitoSans",
+    marginLeft: "0.5rem",
+    fontSize: "1.25rem",
+    color: "#77757F"
+  }
 
   const dateString =
     dateObject.getDate() +
@@ -201,22 +174,6 @@ export const IdeaCard = ({ idea }) => {
   return (
     <div className="card standard-card">
 
-      {/* <toastDelete /> 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          margin: "1.25rem 0rem 0 1.75rem",
-        }}
-      >
-        <i
-          className="fas fa-user-circle"
-          style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
-        ></i>
-        <h5>Anonymous User</h5>
-      </div>*/}
-
-
       <UserDateDisplay 
         user = {idea.user}
         date = {idea.timestamp}
@@ -227,35 +184,18 @@ export const IdeaCard = ({ idea }) => {
       <div className="card-body">
         <Row>
           <Col xs={4}>
-            <h5 className="card-title" style={{marginLeft: "0.75rem"}}>{idea.title} </h5>
+            <h6 style={ideaTitle}>{idea.title} </h6>
           </Col>
-
-          {/*<Col md={{ span: 3, offset: 5 }} >
-            <Gradient
-              gradients={gradients} // required
-              property="background"
-              duration={3000}
-              angle="45deg"
-              className="idea-timestamp"
-            >
-              <span className="title-timestamp">
-                <AiOutlineFieldTime />{" "}
-                {dateObject.toLocaleString("en-ES", {
-                  timeZone: "Europe/Vienna",
-                })}
-              </span>
-            </Gradient>
-              </Col>*/}
         </Row>
 
         <Container fluid>
-          <p className="card-text">{idea.content}</p>
+          <p style={ideaContent}>{idea.content}</p>
           <Row>
 
             {/* likes button */}
             <Col xs={1} className="idea-button">
               <a className="card-link" style={btn} onClick={()=>{handleLikeIdea(idea)}} >
-                <i className="fas fa-thumbs-up"></i> {updatedLikes}
+                <i className="fas fa-thumbs-up" style={icon}></i> <span style={numberOf}>{updatedLikes}</span>
                 
               </a>
             </Col>
@@ -267,35 +207,9 @@ export const IdeaCard = ({ idea }) => {
                 style={btn}
                 onClick={onClickComments}
               >
-                <i className="far fa-comments"></i> {idea.comments?.length}
+                <i className="far fa-comments" style={icon}></i> <span style={numberOf}>{idea.comments?.length}</span>
               </a>
             </Col>
-
-
-            {/* delete button 
-            <Col xs={1} className="idea-button">
-              <OverlayTrigger
-                show={showPopover}
-                rootClose
-                trigger="click"
-                placement="right"
-                overlay={popover}
-              >
-                <a onClick={() => setShowPopover(true)}>
-                  <i className="far fa-trash-alt"></i>
-                </a>
-              </OverlayTrigger>
-            </Col>*/}
-            {/* update button 
-            <Col xs={1} className="idea-button">
-              <Link
-                to={{
-                  pathname: `/edit/${idea.id}`,
-                }}
-              >
-                <i className="fas fa-edit"></i>
-              </Link>
-            </Col>*/}
           </Row>
 
           
