@@ -13,7 +13,13 @@ export const AddIdeaScreen = () => {
 
   return (
     <div>
-      <div className="container-fluid px-5">
+      <div className="container-fluid px-5" style={{
+        position: "absolute",
+        marginLeft: "18rem",
+        width: "calc(100vw - 20rem)",
+        height: "100vh",
+        overflowY: "hidden",
+      }}>
         {/* TODO: Sidebar */}
         <div className="row">
           <div className="col">
