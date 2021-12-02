@@ -13,3 +13,12 @@
     justify-content: center;
     margin: 1rem 0 1rem 0;
 }
+
+.username{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.email{
+    color: #A5A3A9;
+}
