@@ -8,72 +8,88 @@ import { types } from "../types/types";
 //     ]
 // }
 
-    const initialIdeas = {
-        ideas: []
-    };
+const initialIdeas = {
+  ideas: [],
+};
 /*
     {
         list: []
     }
 */
 export const ideaReducer = (state = initialIdeas, action) => {
-
-    switch (action.type) {
-
-        case types.ideasLoad: {
-            return {
-                ...state,
-                ideas: [...action.payload]
-            }
-        }
-
-        case types.ideasAddNew:
-            return {
-                ...state,
-                ideas: [...state.ideas, {...action.payload}]
-            }
-
-        case types.ideasUpdate:
-            return {
-                ...state,
-                ideas: state.ideas.map(
-                    idea => idea.id === action.payload.id
-                    ? action.payload.idea
-                    : idea
-                )
-            }
-
-        case types.ideasDelete:
-            return {
-                ...state,
-                ideas: state.ideas.filter ( idea => idea.id !== action.payload )
-            }
-
-// Comments
-        case types.addComment:
-            return{
-                ...state,
-                ideas: state.ideas.map(
-                    idea => idea.id === action.payload.id
-                    ? action.payload
-                    : idea
-                )
-            }
-
-        case types.deleteComment:
-            let ideaToModify = state.ideas.find(item => item.id === action.payload.ideaId);
-            ideaToModify.comments = ideaToModify.comments.filter(comment => comment.id !== action.payload.commentId)
-            return {
-                ...state,
-                ideas: [
-                    ideaToModify,
-                    ...state.ideas.filter(item => item.id !== action.payload.ideaId),
-                ]
-            }
-
-        default:
-            return state;
-
+  switch (action.type) {
+    case types.ideasLoad: {
+      return {
+        ...state,
+        ideas: [...action.payload],
+      };
     }
 
-}
+    case types.ideasAddNew:
+      return {
+        ...state,
+        ideas: [...state.ideas, { ...action.payload }],
+      };
+
+    case types.ideasUpdate:
+      return {
+        ...state,
+        ideas: state.ideas.map((idea) =>
+          idea.id === action.payload.id ? action.payload.idea : idea
+        ),
+      };
+
+    case types.ideasDelete:
+      return {
+        ...state,
+        ideas: state.ideas.filter((idea) => idea.id !== action.payload),
+      };
+
+    // Comments
+    case types.addComment:
+      return {
+        ...state,
+        ideas: state.ideas.map((idea) =>
+          idea.id === action.payload.id ? action.payload : idea
+        ),
+      };
+
+    case types.deleteComment:
+      let ideaToModify = state.ideas.find(
+        (item) => item.id === action.payload.ideaId
+      );
+      ideaToModify.comments = ideaToModify.comments.filter(
+        (comment) => comment.id !== action.payload.commentId
+      );
+      return {
+        ...state,
+        ideas: [
+          ideaToModify,
+          ...state.ideas.filter((item) => item.id !== action.payload.ideaId),
+        ],
+      };
+
+    case types.likeComment:
+      console.log(action.payload);
+      let idea = state.ideas.find((item) => item.id === action.payload.ideaId);
+
+      idea.comments = idea.comments.map((comment) => {
+        if (comment.id !== action.payload.commentId) {
+          return comment;
+        }
+        comment.likes += 1;
+        return comment;
+      });
+      console.log(idea.comments);
+      return {
+        ...state,
+        ideas: [
+          idea,
+          ...state.ideas.filter((item) => item.id !== action.payload.ideaId),
+        ],
+      };
+
+    default:
+      return state;
+  }
+};

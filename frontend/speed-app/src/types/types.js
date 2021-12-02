@@ -9,6 +9,7 @@ export const types = {
     // Comments
     addComment: '[Comments] Add Comment',
     deleteComment: '[Comments] Delete Comment',
+    likeComment: '[Comments] Like Comment',
 
     //Filter
     updateFilter: '[Filter] Update filter',

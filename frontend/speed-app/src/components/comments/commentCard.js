@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { BsFillTrashFill, BsFillExclamationOctagonFill } from "react-icons/bs";
 import { DropDownButton } from "../ui/DropDownButton";
 import { startDeletingComment } from "../../actions/comment";
+import { likeComment } from "../../actions/comment";
 
 import "../../style/comments.css";
 
@@ -15,13 +16,28 @@ export const CommentCard = ({ props }) => {
   const comment = props?.comment;
   const idea = props?.idea;
   const dispatch = useDispatch();
-  const user = useSelector(state => state.auth)
-
+  const user = useSelector((state) => state.auth);
+  const [disableLike, setDisableLike] = useState(false);
+  const [updatedLikes, setUpdatedLikes] = useState(comment.likes);
+  console.log(comment)
   const handleDeleteComment = (ideaId, commentId) => {
     dispatch(startDeletingComment(ideaId, commentId));
   };
+  const handleLikeComment = async (comment)=>{
+    
+    if(disableLike){
+      return
+    }
+    else{
+      setUpdatedLikes(o => o+=1);
+      comment.likes++;
+      dispatch(await likeComment(idea.id, comment.id));
+      setDisableLike(true);
+    }
+  }
 
 
+  const btn = { textDecoration: "none", cursor: "pointer" };
   return (
     <div
       style={{
@@ -40,38 +56,12 @@ export const CommentCard = ({ props }) => {
         <Row>
           <Col>
             <div className="user-name-container">
-              <h6 style={{marginBottom: "-0.25rem"}}>{comment.user.name}</h6>
-              <span className="comment-timestamp">{moment( comment.timestamp ).format('MMM Do YYYY, h:mm:ss')}</span>
+              <h6 style={{ marginBottom: "-0.25rem" }}>{comment.user.name}</h6>
+              <span className="comment-timestamp">
+                {moment(comment.timestamp).format("MMM Do YYYY, h:mm:ss")}
+              </span>
             </div>
           </Col>
-
-         {/* <Col
-            xs={{ span: "2", offset: "3" }}
-            className="comment-timestamp"
-            style={{ alignContent: "center", borderWidth: "20%" }}
-          >
-            <Gradient
-              gradients={gradients} // required
-              property="background"
-              duration={3000}
-              angle="45deg"
-              style={{ borderRadius: "20px" }}
-            >
-              <span
-                className="comment-timestamp" style={{
-                  margin: "15%",
-                  marginTop:"5%",
-                  borderRadius: "20px",
-                }}
-              >
-                {dateObject.toLocaleString("en-ES", {
-                  timeZone: "Europe/Vienna",
-                })}{" "}
-              </span>
-            </Gradient>
-          </Col>
-
-           comment timestamp */}
         </Row>
 
         <Row>
@@ -80,35 +70,47 @@ export const CommentCard = ({ props }) => {
           </Col>
 
           <Col>
-          { (user.uid === comment.user.uid) ?
-          // Comment from the user
+            {user.uid === comment.user.uid ? (
+              // Comment from the user
               <DotsButton
-              items={[
-                {
-                  id: comment.id,
-                  action: DropDownButton({
-                    icon: BsFillTrashFill(),
-                    title: "Delete",
-                  }),
-                  handler: handleDeleteComment,
-                  args: { ideaId: idea.id, commentId: comment.id },
-                },
-              ]}
-            />
-            :
-            // Comment from other user
-            <DotsButton  
-                      items = { [
-                          { 
-                              id: 1,
-                              action: DropDownButton( { icon:BsFillExclamationOctagonFill(),  title:"Report"} ), 
-                              handler: () => {},
-                              args: {  } 
-                          }
-                      ]}
-                  />
-          }
-
+                items={[
+                  {
+                    id: comment.id,
+                    action: DropDownButton({
+                      icon: BsFillTrashFill(),
+                      title: "Delete",
+                    }),
+                    handler: handleDeleteComment,
+                    args: { ideaId: idea.id, commentId: comment.id },
+                  },
+                ]}
+              />
+            ) : (
+              // Comment from other user
+              <DotsButton
+                items={[
+                  {
+                    id: 1,
+                    action: DropDownButton({
+                      icon: BsFillExclamationOctagonFill(),
+                      title: "Report",
+                    }),
+                    handler: () => {},
+                    args: {},
+                  },
+                ]}
+              />
+            )}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <a className="card-link" style={btn} 
+          onClick={()=>{handleLikeComment(comment)}} 
+          >
+                <i className="fas fa-thumbs-up ms-3 pb-2"></i> {updatedLikes}
+                
+              </a>
           </Col>
         </Row>
       </Card>

@@ -184,8 +184,6 @@ export const IdeaCard = ({ idea }) => {
     history.push( path )
   } 
 
-
-
   const btn = { textDecoration: "none", cursor: "pointer" };
 
   const unixTimestamp = idea.timestamp;
@@ -201,22 +199,6 @@ export const IdeaCard = ({ idea }) => {
   return (
     <div className="card standard-card">
 
-      {/* <toastDelete /> 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          margin: "1.25rem 0rem 0 1.75rem",
-        }}
-      >
-        <i
-          className="fas fa-user-circle"
-          style={{ fontSize: "1.5rem", marginRight: "0.5rem" }}
-        ></i>
-        <h5>Anonymous User</h5>
-      </div>*/}
-
-
       <UserDateDisplay 
         user = {idea.user}
         date = {idea.timestamp}
@@ -230,22 +212,6 @@ export const IdeaCard = ({ idea }) => {
             <h5 className="card-title" style={{marginLeft: "0.75rem"}}>{idea.title} </h5>
           </Col>
 
-          {/*<Col md={{ span: 3, offset: 5 }} >
-            <Gradient
-              gradients={gradients} // required
-              property="background"
-              duration={3000}
-              angle="45deg"
-              className="idea-timestamp"
-            >
-              <span className="title-timestamp">
-                <AiOutlineFieldTime />{" "}
-                {dateObject.toLocaleString("en-ES", {
-                  timeZone: "Europe/Vienna",
-                })}
-              </span>
-            </Gradient>
-              </Col>*/}
         </Row>
 
         <Container fluid>
@@ -270,32 +236,6 @@ export const IdeaCard = ({ idea }) => {
                 <i className="far fa-comments"></i> {idea.comments?.length}
               </a>
             </Col>
-
-
-            {/* delete button 
-            <Col xs={1} className="idea-button">
-              <OverlayTrigger
-                show={showPopover}
-                rootClose
-                trigger="click"
-                placement="right"
-                overlay={popover}
-              >
-                <a onClick={() => setShowPopover(true)}>
-                  <i className="far fa-trash-alt"></i>
-                </a>
-              </OverlayTrigger>
-            </Col>*/}
-            {/* update button 
-            <Col xs={1} className="idea-button">
-              <Link
-                to={{
-                  pathname: `/edit/${idea.id}`,
-                }}
-              >
-                <i className="fas fa-edit"></i>
-              </Link>
-            </Col>*/}
           </Row>
 
           

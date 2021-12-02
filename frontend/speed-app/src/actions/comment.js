@@ -15,6 +15,7 @@ export const addNewComment = (idea, content, user) => {
             user,
             content: content,
             timestamp: Date.now(),
+            likes: 0
         }
 
         const docRef = await addDoc(collection(db, `ideas/${ idea.id }/comments`), richComment);
@@ -54,3 +55,10 @@ export const deleteComment = ( payload ) => ({
     type: types.deleteComment,
     payload
 });
+
+export const likeComment = (  ideaId, commentId  ) => {
+    return{
+        type: types.likeComment,
+        payload: {ideaId, commentId}
+    }
+}
