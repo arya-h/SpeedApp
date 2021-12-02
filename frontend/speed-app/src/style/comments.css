@@ -1,11 +1,13 @@
 .comment-container{
     margin-top: 0.75rem;
+    font-family: "NunitoSans";
 }
 
 .comment-timestamp{
-    font-size: small;
-    font-style: italic;
+    font-size: x-small;
     text-align: center;
+    font-family: "NunitoSans";
+    color: var(--light-grey);
 }
 
 .profile-pic-container{
@@ -19,6 +21,7 @@
     box-shadow: none !important;
     border: 1px solid #A5A3A9;
     border-radius: 1rem;
+    font-family: "NunitoSans";
 }
 
 .comment-box:focus{
@@ -27,6 +30,7 @@
     outline: none !important;
     border: 1px solid #4D77FF;
     border-radius: 1rem;
+    font-family: "NunitoSans";
 }
 
 .comment-list-container{
@@ -35,8 +39,10 @@
 
 .user-name-container{
     margin: 0.5rem 0 0 1rem;
+    font-family: "NunitoSans";
 }
 
 .user-comment-container{
     margin: 0 0 0.5rem 1rem;
+    font-family: "NunitoSans";
 }

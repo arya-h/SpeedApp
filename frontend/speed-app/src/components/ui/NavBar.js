@@ -11,9 +11,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const history = useHistory()
 
-  const handleLogout = () => {
-    dispatch( startLogout() );
-  }
   const handleLogin = () => {
     history.push('/auth/login')
   }
@@ -40,8 +37,8 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="">
-                Speed App
+              <a className="nav-link active" aria-current="page" href="" style={{fontFamily:"var(--main-font)", fontSize: "2rem"}}>
+                SpeedApp
               </a>
             </li>
             {/* <li className="nav-item">
@@ -51,27 +48,9 @@ const NavBar = () => {
                             <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
           </ul>
-          <button 
-                    className="btn"
-                    onClick={ handleLogout }
-                >
-                    
-                    Logout
-          </button>
 
-          <button 
-                    className="btn"
-                    onClick={ handleLogin }
-                >
-                    
-                    Login
-          </button>
 
-          <div className="pe-5">
-            <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
-                <i className="far fa-plus-square"></i>
-            </Link>
-          </div>
+
             
           <form className="d-flex">
             <input
