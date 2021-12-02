@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc } from '@firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, updateDoc } from '@firebase/firestore';
 
 import { db } from '../firebase/firebase-config';
 import { types } from '../types/types';
@@ -56,7 +56,9 @@ export const deleteComment = ( payload ) => ({
     payload
 });
 
-export const likeComment = (  ideaId, commentId  ) => {
+export const likeComment = async (  ideaId, commentId, comment  ) => {
+    await updateDoc( doc(db, `ideas/${ ideaId }/comments`, commentId), comment );
+
     return{
         type: types.likeComment,
         payload: {ideaId, commentId}

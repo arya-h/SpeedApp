@@ -19,7 +19,7 @@ export const CommentCard = ({ props }) => {
   const user = useSelector((state) => state.auth);
   const [disableLike, setDisableLike] = useState(false);
   const [updatedLikes, setUpdatedLikes] = useState(comment.likes);
-  console.log(comment)
+
   const handleDeleteComment = (ideaId, commentId) => {
     dispatch(startDeletingComment(ideaId, commentId));
   };
@@ -31,7 +31,7 @@ export const CommentCard = ({ props }) => {
     else{
       setUpdatedLikes(o => o+=1);
       comment.likes++;
-      dispatch(await likeComment(idea.id, comment.id));
+      dispatch(await likeComment(idea.id, comment.id, comment));
       setDisableLike(true);
     }
   }
@@ -57,7 +57,9 @@ export const CommentCard = ({ props }) => {
           <Col>
             <div className="user-name-container">
               <h6 style={{marginBottom: "-0.5rem", fontWeight:"600"}}>{comment.user.name}</h6>
-              <span className="comment-timestamp">{moment( comment.timestamp ).format('MMM Do YYYY, h:mm:ss')}</span>
+              <span className="comment-timestamp">
+                {moment(comment.timestamp).format("MMM Do YYYY, h:mm:ss A")}
+              </span>
             </div>
           </Col>
         </Row>
