@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const filter = useSelector((state) => state.filter);
+  const user = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const history = useHistory()
 
@@ -51,29 +53,13 @@ const NavBar = () => {
                             <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
           </ul>
-          <button 
-                    className="btn"
-                    onClick={ handleLogout }
-                >
-                    
-                    Logout
-          </button>
-
-          <button 
-                    className="btn"
-                    onClick={ handleLogin }
-                >
-                    
-                    Login
-          </button>
-
           <div className="pe-5">
             <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
                 <i className="far fa-plus-square"></i>
             </Link>
           </div>
             
-          <form className="d-flex">
+          <form className="d-flex me-2">
             <input
               value={filter}
               className="form-control me-2"
@@ -88,6 +74,28 @@ const NavBar = () => {
               }
             ></input>
           </form>
+          { user.name ?
+            <><i className={"fas fa-user-circle"} style={{fontSize: "2.25rem", color:"white"}}/>
+            <button 
+                    className="btn btn-danger ms-2"
+                    onClick={ handleLogout }
+                >
+                    
+                    Logout
+            </button></>
+            : 
+            <button 
+                    className="btn btn-light"
+                    onClick={ handleLogin }
+                >
+                  <div className={"d-flex align-items-center"}>
+                    <i className={"fas fa-user-circle"} style={{fontSize: "2.25rem", color:"var(--bs-primary)", paddingRight:"1rem"}}/>
+                    <span className={"h-100"}>Login</span> 
+                  </div>
+                    
+            </button>
+          }
+
         </div>
       </div>
     </nav>

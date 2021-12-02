@@ -5,6 +5,7 @@ import { useForm } from '../../hooks/useForm'
 
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
 import '../../style/auth.css'
+import logo from "../../assets/SpeedApp-Icon.png";
 
 export const LoginScreen = () => {
 
@@ -33,33 +34,40 @@ export const LoginScreen = () => {
 
     return (
         <>
-            <h3 className="auth__title"> Login screen</h3>
-            <hr/>
-
+            <img src={ logo } className="auth__logo rounded mx-auto d-block" alt="SpeedApp"></img>
+            <h3 className="auth__title"> Sign in</h3>
+            
+            <div className={"auth__form"}>
             <form 
                 onSubmit={ handleLogin }
                 >
+                <div className={"auth__input mb-3"}>
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input 
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        className="form-control"
+                        value= { email }
+                        onChange= { handleInputChange }
+                    />
+                </div>
 
-                <input 
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    className="auth__input"
-                    value= { email }
-                    onChange= { handleInputChange }
-                />
+                <div className={"auth__input"}>
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input 
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        className="form-control"
+                        value= { password }
+                        onChange= { handleInputChange }
+                    />
+                </div>
 
-                <input 
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    className="auth__input"
-                    value= { password }
-                    onChange= { handleInputChange }
-                />
 
                 <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block w-100 my-4"
                     type="submit"
                     disabled={ loading }
                 >
@@ -69,13 +77,13 @@ export const LoginScreen = () => {
                 <div className="auth__social-networks">
                     <p> Login with social networks</p>
                     <div 
-                        className="google-btn"
+                        className="google-btn w-100"
                         onClick={ handleGoogleLogin }
                     >
-                        <div className="google-icon-wrapper">
+                        <div className="google-icon-wrapper d-flex justify-content-center p-2">
                             <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                         </div>
-                        <p className="btn-text">
+                        <p className="btn-text text-start m-auto">
                             <b>Sign in with google</b>
                         </p>
                     </div>
@@ -88,6 +96,8 @@ export const LoginScreen = () => {
                     Create new account
                 </Link>
             </form>
+            </div>
+            
         </>
     )
 }

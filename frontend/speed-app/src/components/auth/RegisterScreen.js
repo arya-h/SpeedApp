@@ -4,7 +4,8 @@ import { useForm } from '../../hooks/useForm';
 import validator from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { startRegisterWithEmailPasswordName } from '../../actions/auth';
-import '../../style/auth.css'
+import '../../style/auth.css';
+import logo from "../../assets/SpeedApp-Icon.png";
 
 
 export const RegisterScreen = () => {
@@ -52,9 +53,10 @@ export const RegisterScreen = () => {
         
     return (
         <>
-            <h3 className="auth__title"> Register screen</h3>
-            <hr/>
+            <img src={ logo } className="auth__logo rounded mx-auto d-block" alt="SpeedApp"></img>
+            <h3 className="auth__title">Sign up</h3>
 
+            <div className={"auth__form"}>
             <form onSubmit={ handleRegister }>
                 {/* {
                     msgError &&
@@ -64,50 +66,57 @@ export const RegisterScreen = () => {
                         </div>
                     )
                 } */}
-                <label htmlFor="name">User name</label>
-                <input 
-                    type="text"
-                    placeholder="Name"
-                    name="name"
-                    className="auth__input"
-                    value={ name }
-                    onChange={ handleInputChange }
-                    autoComplete="off"
-                />
+                <div className={"auth__input mb-3"}>
+                    <label htmlFor="name" className="form-label">User name</label>
+                    <input 
+                        type="text"
+                        placeholder="Name"
+                        name="name"
+                        className="form-control"
+                        value={ name }
+                        onChange={ handleInputChange }
+                        autoComplete="off"
+                    />
+                </div>
+                
+                <div className={"auth__input mb-3"}>
+                    <label htmlFor="email" className="form-label">Email</label>
+                    <input 
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        className="form-control"
+                        value={ email }
+                        onChange={ handleInputChange }
+                        autoComplete="off"
+                    />
+                </div>
+                <div className={"auth__input mb-3"}>
+                    <label htmlFor="password" className="form-label">Password</label>
+                    <input 
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        value={ password }
+                        onChange={handleInputChange}
+                        className="form-control"
+                    />
+                </div>
 
-                <label htmlFor="email">Email</label>
-                <input 
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    className="auth__input"
-                    value={ email }
-                    onChange={ handleInputChange }
-                    autoComplete="off"
-                />
-
-                <label htmlFor="password">Password</label>
-                <input 
-                    type="password"
-                    name="password"
-                    placeholder="password"
-                    value={ password }
-                    onChange={handleInputChange}
-                    className="auth__input"
-                />
-
-                <label htmlFor="password2">Confirm password</label>
-                <input 
-                    type="password"
-                    name="password2"
-                    placeholder="Confirm password"
-                    value={ password2 }
-                    onChange={handleInputChange}
-                    className="auth__input"
-                />
+                <div className={"auth__input mb-3"}>
+                    <label htmlFor="password2" className="form-label">Confirm password</label>
+                    <input 
+                        type="password"
+                        name="password2"
+                        placeholder="Confirm password"
+                        value={ password2 }
+                        onChange={handleInputChange}
+                        className="form-control"
+                    />
+                </div>
 
                 <button
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block w-100 mb-2"
                     type="submit"
                 >
                     Register
@@ -121,6 +130,8 @@ export const RegisterScreen = () => {
                     Already registered?
                 </Link>
             </form>
+            </div>
+            
         </>
     )
 }
