@@ -60,10 +60,10 @@ export const CreateIdeaModal = () => {
         </form>
       </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer justify-content-center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => {setTitle(""); setContent(""); handleOnClose()}}>Close</button>
         <button
-                className="btn btn-primary "
+                className="btn btn-primary"
                 onClick={( e ) => {
                   e.preventDefault();
                   dispatch(addNewIdea({ title: title, content: content, comments: [], user }));
