@@ -5,6 +5,8 @@ import logo from "../../assets/SpeedApp-Icon.png";
 import { types } from "../../types/types";
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { startLoadingIdeas } from "../../actions/idea";
+
 
 const NavBar = () => {
   const filter = useSelector((state) => state.filter);
@@ -13,6 +15,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch( startLogout() );
+    dispatch( startLoadingIdeas() );
   }
   const handleLogin = () => {
     history.push('/auth/login')
