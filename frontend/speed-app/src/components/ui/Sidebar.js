@@ -12,7 +12,9 @@ const Sidebar = () => {
             <nav id="sidebar">
                 <UserProfileInfo user={user}/>
                 <div style={userMenu}>
-                    <a onClick={() => alert('Home')}>Home</a>
+                    <Link to="/ideas/feed">
+                        <a>Home</a>
+                    </Link>
                     <a onClick={() => alert('My Ideas')}>My Ideas</a>
                     <a onClick={() => alert('Liked Ideas')}>Liked Ideas</a>
                 </div>
