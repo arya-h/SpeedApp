@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { FaPlus} from 'react-icons/fa';
 import UserProfileInfo from './UserProfileInfo';
 import { types } from '../../types/types';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,8 @@ const Sidebar = () => {
     const showProfile = user.name !== undefined ? "block" : "none";
     const showLogin = user.name !== undefined ? "none" : "flex";
     const dispatch = useDispatch();
+
+
 
     const filterUserIdeas = (userId) => {
         dispatch({
@@ -68,9 +71,15 @@ const Sidebar = () => {
                         <a onClick={(event) => {selectOption(event.target); alert('Liked Ideas')}} style={optionLabel}>Liked Ideas</a>
                     </div>
                     <div class="option">
-                        <Link to="/ideas/add">
+                        {/* <Link to="/ideas/add">
                             <button className="btn btn-primary">Add idea</button>
-                        </Link>
+                        </Link> */}
+                        <Link to="/ideas/add" className="btn btn-primary sidebar__add-link w-75">
+                        <div className={"d-flex align-items-center p-2"}>
+                            <FaPlus/>
+                            <span className={" ps-3 "}> Create new idea </span>
+                        </div>
+                    </Link>
                     </div>
                 </div>
             </nav>
