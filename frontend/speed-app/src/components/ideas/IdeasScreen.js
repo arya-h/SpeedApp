@@ -36,7 +36,7 @@ export const IdeasScreen = () => {
   return (
     <div className={"ideas__container"}>
       <Sidebar/>
-      <div className="container-fluid px-5">    
+      <div className="container-fluid px-5 pt-5">    
         <div className="row">
           <div className="col-6">
             <h1 className="my-3">Ideas feed</h1>
