@@ -20,6 +20,13 @@ const Sidebar = () => {
         })
     }
 
+    const selectOption = (option) => {
+        let options = document.getElementsByClassName("option-selected");
+        let optionDiv = option.parentNode;
+        options[0].className = "option";
+        optionDiv.setAttribute("class", "option-selected");
+    }
+
     const reLoadIdeas = () => {
         Swal.fire({
             title: 'Loading ideas',
@@ -40,17 +47,17 @@ const Sidebar = () => {
                 <UserProfileInfo user={user}/>
                 <div style={userMenu}>
 
-                    <div class="option">
-                        <i class="fas fa-home" style={icon}></i>
-                        <a onClick={() => reLoadIdeas()} style={optionLabel}>Home</a>
+                    <div class="option-selected">
+                        <i class="fas fa-home icon"></i>
+                        <a onClick={(event) => {selectOption(event.target);reLoadIdeas();}} style={optionLabel}>Home</a>
                     </div>
                     <div class="option">
-                        <i class="fas fa-bookmark" style={icon}></i>
-                        <a onClick={() => filterUserIdeas(user.uid)} style={{fontSize: "1rem", marginLeft: "1.85rem", fontWeight: "600"}}>My Ideas</a>
+                        <i class="fas fa-bookmark icon"></i>
+                        <a onClick={(event) => {selectOption(event.target); filterUserIdeas(user.uid);}} style={{fontSize: "1rem", marginLeft: "1.85rem", fontWeight: "600"}}>My Ideas</a>
                     </div>
                     <div class="option">
-                        <i class="fas fa-paper-plane" style={icon}></i>
-                        <a onClick={() => alert('Liked Ideas')} style={optionLabel}>Liked Ideas</a>
+                        <i class="fas fa-paper-plane icon"></i>
+                        <a onClick={(event) => {selectOption(event.target); alert('Liked Ideas')}} style={optionLabel}>Liked Ideas</a>
                     </div>
                     <div class="option">
                         <Link to="/ideas/add">
@@ -76,11 +83,6 @@ const userMenu = {
     flexDirection: "column",
     alignItems: "start",
     padding: "1rem"
-}
-
-const icon = {
-    fontSize: "1.25rem",
-    color: "#D2D1D4"
 }
 
 const optionLabel = {
