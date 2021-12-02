@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import UserProfileInfo from './UserProfileInfo';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -16,7 +17,9 @@ const Sidebar = () => {
                     <a onClick={() => alert('Liked Ideas')}>Liked Ideas</a>
                 </div>
                 <div>
-                    <button className="btn btn-primary">Add idea</button>
+                    <Link to="/ideas/add">
+                        <button className="btn btn-primary">Add idea</button>
+                    </Link>
                 </div>
             </nav>
         </div>   
