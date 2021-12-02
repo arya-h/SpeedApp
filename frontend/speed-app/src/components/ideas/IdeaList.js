@@ -12,11 +12,11 @@ export const IdeaList = () => {
     x.title.toLowerCase().includes(filter.toLowerCase())
   );
 
-  if (sortMethod === 1) {
+  if (sortMethod === 0) {
     filteredIdeas.sort((a, b) => b.timestamp - a.timestamp);
-  } else if (sortMethod === 2) {
+  } else if (sortMethod === 1) {
     filteredIdeas.sort((a, b) => a.timestamp - b.timestamp);
-  } else if (sortMethod === 3) {
+  } else if (sortMethod === 2) {
     filteredIdeas.sort((a, b) => {
       if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return -1;
@@ -26,7 +26,7 @@ export const IdeaList = () => {
       }
       return 0
     });
-  } else if (sortMethod === 4) {
+  } else if (sortMethod === 3) {
     filteredIdeas.sort((a, b) => {
       if (a.title.toLowerCase() < b.title.toLowerCase()) {
         return 1;
@@ -54,11 +54,10 @@ export const IdeaList = () => {
                   setSortMethod(parseInt(event.target.value))
                 }
               >
-                <option value="0">Default Sort</option>
-                <option value="1">Date: Newest first</option>
-                <option value="2">Date: Oldest first</option>
-                <option value="3">Title: A-Z</option>
-                <option value="4">Title: Z-A</option>
+                <option value="0">Date: Newest first</option>
+                <option value="1">Date: Oldest first</option>
+                <option value="2">Title: A-Z</option>
+                <option value="3">Title: Z-A</option>
               </Form.Select>
             </Col>
           </Row>
