@@ -46,7 +46,7 @@ const Sidebar = () => {
                     </div>
                     <div class="option">
                         <i class="fas fa-bookmark" style={icon}></i>
-                        <a onClick={() => filterUserIdeas(user.uid)} style={{fontSize: "1rem", marginLeft: "1.85rem"}}>My Ideas</a>
+                        <a onClick={() => filterUserIdeas(user.uid)} style={{fontSize: "1rem", marginLeft: "1.85rem", fontWeight: "600"}}>My Ideas</a>
                     </div>
                     <div class="option">
                         <i class="fas fa-paper-plane" style={icon}></i>
@@ -85,7 +85,8 @@ const icon = {
 
 const optionLabel = {
     fontSize: "1rem",
-    marginLeft: "1.5rem"
+    marginLeft: "1.5rem",
+    fontWeight: "600"
 }
 
 export default Sidebar;

@@ -195,7 +195,7 @@ export const IdeaCard = ({ idea }) => {
             {/* likes button */}
             <Col xs={1} className="idea-button">
               <a className="card-link" style={btn} onClick={()=>{handleLikeIdea(idea)}} >
-                <i className="fas fa-thumbs-up" style={icon}></i> <span style={numberOf}>{updatedLikes}</span>
+                <i className="far fa-thumbs-up" style={icon}></i> <span style={numberOf}>{updatedLikes}</span>
                 
               </a>
             </Col>
@@ -207,7 +207,7 @@ export const IdeaCard = ({ idea }) => {
                 style={btn}
                 onClick={onClickComments}
               >
-                <i className="far fa-comments" style={icon}></i> <span style={numberOf}>{idea.comments?.length}</span>
+                <i className="far fa-comment" style={icon}></i> <span style={numberOf}>{idea.comments?.length}</span>
               </a>
             </Col>
           </Row>

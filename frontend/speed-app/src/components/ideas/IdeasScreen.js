@@ -51,7 +51,7 @@ export const IdeasScreen = () => {
 };
 
 const ideasFeedTitle = {
-  fontSize: "1.5rem",
+  fontSize: "2rem",
   fontFamily: "NunitoSans",
   fontWeight: "600",
   padding: "0.5rem"
