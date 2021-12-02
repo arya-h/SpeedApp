@@ -5,6 +5,7 @@ import { types } from '../../types/types';
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { startLoadingIdeas } from '../../actions/idea';
+import '../../style/components/sidebar.css';
 
 const Sidebar = () => {
 
@@ -38,16 +39,24 @@ const Sidebar = () => {
             <nav id="sidebar">
                 <UserProfileInfo user={user}/>
                 <div style={userMenu}>
-                    <Link to="/ideas/feed">
-                        <a onClick={() => reLoadIdeas()}>Home</a>
-                    </Link>
-                    <a onClick={() => filterUserIdeas(user.uid)}>My Ideas</a>
-                    <a onClick={() => alert('Liked Ideas')}>Liked Ideas</a>
-                </div>
-                <div>
-                    <Link to="/ideas/add">
-                        <button className="btn btn-primary">Add idea</button>
-                    </Link>
+
+                    <div class="option">
+                        <i class="fas fa-home" style={icon}></i>
+                        <a onClick={() => reLoadIdeas()} style={optionLabel}>Home</a>
+                    </div>
+                    <div class="option">
+                        <i class="fas fa-bookmark" style={icon}></i>
+                        <a onClick={() => filterUserIdeas(user.uid)} style={optionLabel}>My Ideas</a>
+                    </div>
+                    <div class="option">
+                        <i class="fas fa-paper-plane" style={icon}></i>
+                        <a onClick={() => alert('Liked Ideas')} style={optionLabel}>Liked Ideas</a>
+                    </div>
+                    <div class="option">
+                        <Link to="/ideas/add">
+                            <button className="btn btn-primary">Add idea</button>
+                        </Link>
+                    </div>
                 </div>
             </nav>
         </div>   
@@ -65,7 +74,18 @@ const sideBarStyle = {
 const userMenu = {
     display: "flex",
     flexDirection: "column",
+    alignItems: "start",
     padding: "1rem"
+}
+
+const icon = {
+    fontSize: "1.25rem",
+    color: "#D2D1D4"
+}
+
+const optionLabel = {
+    fontSize: "1rem",
+    marginLeft: "0.5rem"
 }
 
 export default Sidebar;

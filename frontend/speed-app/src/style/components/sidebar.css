@@ -1,0 +1,10 @@
+.option{
+    display: flex;
+    width: "100%";
+    flex-direction: "row";
+    margin: 1.5rem 0 0 1rem;
+}
+
+a:hover{
+    color: "#4D77FF";
+}
