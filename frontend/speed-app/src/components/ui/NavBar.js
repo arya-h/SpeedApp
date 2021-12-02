@@ -53,11 +53,6 @@ const NavBar = () => {
                             <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
           </ul>
-          <div className="pe-5">
-            <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
-                <i className="far fa-plus-square"></i>
-            </Link>
-          </div>
             
           <form className="d-flex me-2">
             <input

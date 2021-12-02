@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startLoadingIdeas } from "../../actions/idea";
+import { Sidebar } from "../ui/Sidebar";
 import { IdeaList } from "./IdeaList";
 
 export const IdeasScreen = () => {
@@ -33,9 +34,9 @@ export const IdeasScreen = () => {
 }, [ dispatch ])
 
   return (
-    <div>
-      <div className="container-fluid px-5">
-        {/* TODO: Sidebar */}
+    <div className={"ideas__container"}>
+      <Sidebar/>
+      <div className="container-fluid px-5">    
         <div className="row">
           <div className="col-6">
             <h1 className="my-3">Ideas feed</h1>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addNewIdea } from "../../actions/idea";
+import { Sidebar } from "../ui/Sidebar";
 
 export const AddIdeaScreen = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ export const AddIdeaScreen = () => {
   const user = useSelector(state => state.auth)
 
   return (
-    <div>
+    <div className={"ideas__container"}>
+    <Sidebar/>
       <div className="container-fluid px-5">
         {/* TODO: Sidebar */}
         <div className="row">

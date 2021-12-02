@@ -32,3 +32,8 @@
     border-radius: 2rem !important;
     margin-bottom: 1rem;
 }
+
+.ideas__container{
+    display: flex;
+    flex-direction: row;
+}
