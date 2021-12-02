@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaPlus} from 'react-icons/fa';
 import UserProfileInfo from './UserProfileInfo';
 import { types } from '../../types/types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { startLoadingIdeas } from '../../actions/idea';
 import '../../style/components/sidebar.css';
@@ -14,8 +14,24 @@ const Sidebar = () => {
     const showProfile = user.name !== undefined ? "block" : "none";
     const showLogin = user.name !== undefined ? "none" : "flex";
     const dispatch = useDispatch();
+    const history = useHistory();
 
+    const handleHome = ( event ) => {
 
+        selectOption(event.target);
+        reLoadIdeas();
+        history.push('/ideas/feed')
+    }
+
+    const handleMyIdeas = ( event ) => {
+
+        if ( user?.name ){
+            selectOption(event.target); 
+            filterUserIdeas(user.uid);
+        } else {
+            history.push('/auth/login');
+        }
+    }
 
     const filterUserIdeas = (userId) => {
         dispatch({
@@ -60,11 +76,11 @@ const Sidebar = () => {
 
                     <div class="option-selected">
                         <i class="fas fa-home icon"></i>
-                        <a onClick={(event) => {selectOption(event.target);reLoadIdeas();}} style={optionLabel}>Home</a>
+                        <a onClick={ handleHome } style={optionLabel}>Home</a>
                     </div>
                     <div class="option">
                         <i class="fas fa-bookmark icon"></i>
-                        <a onClick={(event) => {selectOption(event.target); filterUserIdeas(user.uid);}} style={{fontSize: "1rem", marginLeft: "1.85rem", fontWeight: "600"}}>My Ideas</a>
+                        <a onClick={ handleMyIdeas } style={{fontSize: "1rem", marginLeft: "1.85rem", fontWeight: "600"}}>My Ideas</a>
                     </div>
                     <div class="option">
                         <i class="fas fa-paper-plane icon"></i>
