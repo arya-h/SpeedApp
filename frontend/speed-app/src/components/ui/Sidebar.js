@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import UserProfileInfo from './UserProfileInfo';
 import { types } from '../../types/types';
@@ -8,9 +8,10 @@ import { startLoadingIdeas } from '../../actions/idea';
 import '../../style/components/sidebar.css';
 
 const Sidebar = () => {
-
     const { ideas } = useSelector(state => state.ideas);
     const user = useSelector(state => state.auth);
+    const showProfile = user.name !== undefined ? "block" : "none";
+    const showLogin = user.name !== undefined ? "none" : "flex";
     const dispatch = useDispatch();
 
     const filterUserIdeas = (userId) => {
@@ -44,7 +45,14 @@ const Sidebar = () => {
     return (
         <div class="wrapper" style={sideBarStyle}>
             <nav id="sidebar">
-                <UserProfileInfo user={user}/>
+                <div style={{display: showProfile}}>
+                    <UserProfileInfo user={user}/>
+                </div>
+                <div style={{display: showLogin, flexDirection: "column", alignItems: 'center', justifyContent:'center', padding:"2rem 0 2rem 0", borderBottom: "4px dotted #E8E8EA"}}>
+                    <Link to="/auth/login">
+                        <button className="btn btn-primary">Login</button>
+                    </Link>
+                </div>
                 <div style={userMenu}>
 
                     <div class="option-selected">
