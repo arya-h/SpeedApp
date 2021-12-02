@@ -11,14 +11,7 @@ const NavBar = () => {
   const user = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
-  const history = useHistory()
-
-  const handleLogout = () => {
-    dispatch( startLogout() );
-  }
-  const handleLogin = () => {
-    history.push('/auth/login')
-  }
+  const history = useHistory();
 
   const removeUnderline = { textDecoration: "none" };
 
@@ -42,8 +35,8 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="" style={{ fontFamily:"'Comfortaa'", fontSize:"2rem"}}>
-                Speed App
+              <a className="nav-link active" aria-current="page" href="" style={{fontFamily:"var(--main-font)", fontSize: "2rem"}}>
+                SpeedApp
               </a>
             </li>
             {/* <li className="nav-item">
@@ -69,26 +62,8 @@ const NavBar = () => {
               }
             ></input>
           </form>
-          { user.name ?
-            <><i className={"fas fa-user-circle"} style={{fontSize: "2.25rem", color:"white"}}/>
-            <button 
-                    className="btn btn-danger ms-2"
-                    onClick={ handleLogout }
-                >
-                    
-                    Logout
-            </button></>
-            : 
-            <button 
-                    className="btn btn-light"
-                    onClick={ handleLogin }
-                >
-                  <div className={"d-flex align-items-center"}>
-                    <i className={"fas fa-user-circle"} style={{fontSize: "2.25rem", color:"var(--bs-primary)", paddingRight:"1rem"}}/>
-                    <span className={"h-100"}>Login</span> 
-                  </div>
-                    
-            </button>
+          { user.name &&
+            <i className={"fas fa-user-circle"} style={{fontSize: "2.25rem", color:"white"}}/>
           }
 
         </div>

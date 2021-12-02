@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateIdeaAction } from "../../actions/idea";
-import { Sidebar } from "../ui/Sidebar";
 
 export const IdeaEditScreen = ({match}) => {
   const dispatch = useDispatch();
@@ -14,7 +13,6 @@ export const IdeaEditScreen = ({match}) => {
   
   return (
     <div className={"ideas__container"}>
-      <Sidebar/>
       <div className="container-fluid px-5">
         {/* TODO: Sidebar */}
         <div className="row">

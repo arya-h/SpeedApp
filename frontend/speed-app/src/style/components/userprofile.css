@@ -1,0 +1,24 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px dotted #E8E8EA;
+}
+
+.info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+}
+
+.username{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.email{
+    color: #A5A3A9;
+}

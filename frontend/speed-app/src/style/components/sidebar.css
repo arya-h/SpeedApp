@@ -1,52 +1,33 @@
-.sidebar__container{
-    width: 20rem;
-    padding:5rem 1rem 0rem 2rem;
-    background-color:white;
-    min-height: 92vh;
+.option{
+    display: flex;
+    width: "100%";
+    flex-direction: "row";
+    margin: 1.5rem 0 0 1rem;
 }
 
-.sidebar__link{
-    color:(var(--bs-gray-500))
+a:hover{
+    color: "#4D77FF";
 }
 
-.sidebar__item{
-    display:flex;
-    flex-direction:row;
+.sidebar__login{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 1rem;
+    padding: 1rem 1rem;
+    border-radius: 0.25rem;
+}
+
+ .sidebar__login span{
+    margin: auto;
+} 
+
+.sidebar__login-container{
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding:1rem;
-    border-radius: 0.5rem;
-    transition:0.3s;
-    margin-bottom: 1rem;
-}
-
-.sidebar__item:hover{
-    background-color: var(--bs-blue);
-}
-
-.sidebar_active{
-    color: var(--bs-primary);
-}
-
-.sidebar_active .sidebar__label{
-    color: var(--bs-primary);
-}
-
-
-.sidebar__icon svg{
-    font-size: 1.5rem;
-}
-
-.sidebar__label{
-    padding-left:1rem;
-    color: black;
-}
-
-.sidebar__item:hover .sidebar__icon{
-    color:white !important;
-}
-
-.sidebar__item:hover .sidebar__label{
-    color:white !important;
+    margin-top: 3rem;
+    border-bottom: 4px dotted #E8E8EA;
 }
 
 .sidebar__add-link{

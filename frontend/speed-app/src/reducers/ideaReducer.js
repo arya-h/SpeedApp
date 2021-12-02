@@ -49,6 +49,12 @@ export const ideaReducer = (state = initialIdeas, action) => {
                 ideas: state.ideas.filter ( idea => idea.id !== action.payload )
             }
 
+        case types.filterUserIdeas:
+            return {
+                ...state,
+                ideas: state.ideas.filter ( idea => idea.user.uid === action.payload )
+            }
+
 // Comments
         case types.addComment:
             return{
