@@ -59,13 +59,13 @@ const NavBar = () => {
                     Logout
           </button>
 
-          <button 
+          {/*<button 
                     className="btn"
                     onClick={ handleLogin }
                 >
                     
                     Login
-          </button>
+          </button>*/}
 
           <div className="pe-5">
             <Link to="/ideas/add" className="card-link text-white fa-2x" style={removeUnderline}>
