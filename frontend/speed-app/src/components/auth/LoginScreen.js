@@ -76,7 +76,7 @@ export const LoginScreen = () => {
 
                 <div className="auth__social-networks">
                     <div 
-                        className="google-btn w-100"
+                        className="btn google-btn w-100"
                         onClick={ handleGoogleLogin }
                     >
                         <div className="google-icon-wrapper d-flex justify-content-center p-2">
