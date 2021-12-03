@@ -75,7 +75,6 @@ export const LoginScreen = () => {
                 </button>
 
                 <div className="auth__social-networks">
-                    <p> Login with social networks</p>
                     <div 
                         className="google-btn w-100"
                         onClick={ handleGoogleLogin }

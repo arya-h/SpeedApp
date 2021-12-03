@@ -2,7 +2,8 @@
     align-items: center;
     justify-content: center;
     display:flex;
-    background-color: var(--bs-primary);
+    /*background-color: var(--bs-primary);
+    backdrop-filter: url(https://images.pexels.com/photos/3811082/pexels-photo-3811082.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) blur(4px); */
     margin: 0px;
     height: 100vh;
     width: 100vw;
@@ -10,7 +11,8 @@
 
 .auth__box-container {
     background-color: white;
-    box-shadow: 6px 6px var(--bs-gray-800);
+    /*box-shadow: 6px 6px var(--bs-gray-800);*/
+    box-shadow: 0 10px 40px 0 rgb(62 57 107 / 7%), 0 2px 9px 0 rgb(62 57 107 / 6%);
     border-radius: 10px;
     padding: 20px;
     width: 50%;
