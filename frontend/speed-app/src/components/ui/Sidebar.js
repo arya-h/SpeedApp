@@ -7,6 +7,8 @@ import { Link, useHistory } from 'react-router-dom';
 import Swal from "sweetalert2";
 import { startLoadingIdeas } from '../../actions/idea';
 import '../../style/components/sidebar.css';
+import { AddIdeaModal } from '../ideas/AddIdeaModal';
+import Button from 'react-bootstrap/Button';
 
 const Sidebar = () => {
     const { ideas } = useSelector(state => state.ideas);
@@ -15,6 +17,11 @@ const Sidebar = () => {
     const showLogin = user.name !== undefined ? "none" : "flex";
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
     const handleHome = ( event ) => {
 
@@ -90,12 +97,12 @@ const Sidebar = () => {
                         {/* <Link to="/ideas/add">
                             <button className="btn btn-primary">Add idea</button>
                         </Link> */}
-                        <Link to="/ideas/add" className="btn btn-primary sidebar__add-link w-75">
-                        <div className={"d-flex align-items-center p-2"}>
-                            <FaPlus/>
-                            <span className={" ps-3 "}> Create new idea </span>
-                        </div>
-                    </Link>
+                        {/* <Link to="/ideas/add" className="btn btn-primary sidebar__add-link w-75"> */}
+                        <Button variant="primary" onClick={handleShow}>
+                            Add Idea
+                        </Button>
+                    {/* </Link> */}
+                    <AddIdeaModal show={show} handleClose={handleClose}/>
                     </div>
                 </div>
             </nav>
