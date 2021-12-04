@@ -22,6 +22,7 @@ export const AddIdeaModal = (props) => {
     onHide={handleClose}
     backdrop="static"
     keyboard={false}
+    size="lg"
   >
     <Modal.Header  className="bg-primary text-white" closeButton>
       <Modal.Title>Add Idea</Modal.Title>
