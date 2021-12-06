@@ -79,11 +79,11 @@ const Sidebar = () => {
                         <a onClick={ handleHome } style={optionLabel}>Home</a>
                     </div>
                     <div class="option">
-                        <i class="fas fa-bookmark icon"></i>
+                        <i class="far fa-lightbulb icon"></i>
                         <a onClick={ handleMyIdeas } style={{fontSize: "1rem", marginLeft: "1.85rem", fontWeight: "600"}}>My Ideas</a>
                     </div>
                     <div class="option">
-                        <i class="fas fa-paper-plane icon"></i>
+                        <i class="far fa-thumbs-up icon"></i>
                         <a onClick={(event) => {selectOption(event.target); alert('Liked Ideas')}} style={optionLabel}>Liked Ideas</a>
                     </div>
                     <div class="option">
